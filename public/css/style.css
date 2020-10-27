@@ -1,0 +1,424 @@
+    * {
+        margin: 0;
+        padding: 0;
+        font-family: serif;
+    }
+    
+    body {
+        height: 100%;
+        width: 100%;
+        text-align: center;
+    }
+    
+    a {
+        text-decoration: none;
+    }
+    /**
+      *   BARRA DO MENU
+      */
+    
+    #menu {
+        height: 9%;
+        min-height: 80px;
+        max-height: 100px;
+        width: 100%;
+        border: 0px solid;
+        align-items: center;
+        overflow-y: visible;
+        background-color: #0F4C75;
+        position: fixed;
+        z-index: 2;
+    }
+    
+    #link_logo {
+        position: absolute;
+        width: 147px;
+        height: 150px;
+        left: 5%;
+        top: 20px;
+    }
+    
+    #logo {
+        position: absolute;
+        left: 0%;
+        right: 0%;
+        top: 0%;
+        bottom: -1%;
+        background: #FFFFFF;
+        border-radius: 20px;
+    }
+    
+    #retangle {
+        position: absolute;
+        left: 3%;
+        right: 4%;
+        top: 5%;
+        bottom: 2.68%;
+        background: url(../Logo.png);
+        background-repeat: no-repeat;
+        background-size: 100%;
+        border-radius: 18px;
+    }
+    
+    #Login_link {
+        color: white;
+        font-size: 25px;
+        font: serif;
+        position: absolute;
+        left: 90%;
+        top: 25px;
+    }
+    
+    #menu_sidenav_container {
+        position: absolute;
+        top: 180px;
+        left: 7.5%;
+        cursor: pointer;
+    }
+    
+    #container_usuario_link {
+        position: absolute;
+        left: 90%;
+        top: -500px;
+        background-color: white;
+        height: 40px;
+        border-radius: 40px;
+        padding: 10px;
+        width: 40px;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
+    
+    @media (max-width: 900px) {
+        #menu {
+            height: 6%;
+            min-height: 0;
+        }
+        body {
+            background-color: black;
+        }
+    }
+    /*
+    *       Pesquisa
+    */
+    
+    .search-box {
+        position: absolute;
+        top: 70px;
+        left: 80%;
+        transform: translate(-100%, -100%);
+        background-color: white;
+        height: 40px;
+        border-radius: 40px;
+        padding: 10px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .search-box:hover>.search-txt {
+        width: 350px;
+        padding: 0px 6px;
+    }
+    
+    .search-box:hover>.search-btn {
+        transition: 0.01s;
+    }
+    
+    .search-btn {
+        text-decoration: none;
+        float: right;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: none;
+        transition: 0.01s;
+    }
+    
+    .search-txt {
+        border: none;
+        background: none;
+        outline: none;
+        float: left;
+        padding: 0;
+        color: black;
+        font-size: 16px;
+        transition: 0.4s;
+        line-height: 40px;
+        width: 0px;
+    }
+    /*
+    *       Area central da Página
+    */
+    /* obs: as paginas terão uma area central 
+    que agrupará tudo o que o usuario for visualizar 
+    podendo ser um noticia, perfil de um usuario, Etc*/
+    
+    #Container_conteudo {
+        background-color: #d5d5d5;
+        margin-left: 20%;
+        top: 50px;
+        height: auto;
+        min-height: 1000px;
+        width: 60%;
+        padding-top: 7%;
+        border-left: solid 3px grey;
+        border-right: solid 3px grey;
+    }
+    /*usar apenas classes pois são elementos repetidos muitas vezes
+    *usar id apenas para elementos unicos na pagina*/
+    
+    .Container_noticia {
+        height: auto;
+        padding-bottom: 100px;
+        width: 100%;
+        margin-bottom: 150px;
+        padding-top: 20px;
+        background-color: white;
+    }
+    
+    .Noticia_titulo {
+        padding: 20px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    
+    .Noticia_img {
+        width: 100%;
+        height: auto;
+    }
+    /*Containers do rodape*/
+    
+    .Container_rodape {
+        background-color: white;
+        height: auto;
+        width: 100%;
+    }
+    
+    .Container_autor {
+        vertical-align: middle;
+        display: block;
+        float: left;
+        margin: 10px;
+        text-decoration: none;
+    }
+    
+    .Container_like {
+        vertical-align: middle;
+        display: block;
+        float: right;
+        margin-top: 25px;
+        margin-right: 16%;
+    }
+    
+    .Container_view {
+        vertical-align: middle;
+        display: block;
+        float: right;
+        margin: 15px;
+        margin-top: 25px;
+        margin-right: 16%;
+    }
+    /*Elementos dos containers*/
+    
+    .Autor_img {
+        display: inline-block;
+        height: 60px;
+        width: 60px;
+        border-radius: 40px;
+        vertical-align: middle;
+        cursor: pointer;
+    }
+    
+    .Autor_nome {
+        margin-left: 20px;
+        display: inline-block;
+        vertical-align: middle;
+        text-decoration: none;
+        color: black;
+    }
+    
+    .Svg_like {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    
+    .Num_like {
+        margin-left: 15px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    
+    .Svg_view {
+        display: inline-block;
+        vertical-align: middle;
+    }
+    
+    .Num_view {
+        margin-left: 15px;
+        display: inline-block;
+        vertical-align: middle;
+    }
+    /*
+    *       LOGIN E CADASTRO CSS 
+    */
+    
+    #Login_area {
+        background-color: rgba(50, 130, 184, 0.4);
+        position: absolute;
+        margin-left: 10%;
+        top: 30%;
+        left: 18%;
+        height: auto;
+        min-height: 100px;
+        width: 30%;
+        /*min-width: 300px;*/
+        padding: 3%;
+    }
+    
+    #Icon_seta {
+        width: 40px;
+        height: auto;
+        float: left;
+        display: inline-flex;
+        cursor: pointer;
+    }
+    
+    #Login_titulo {
+        font-size: 35px;
+        font-family: 'Times New Roman', Times, serif;
+        text-align: center;
+    }
+    
+    #Confirmar_button {
+        padding: 5px;
+        border: none;
+        background-color: none;
+        width: 100%;
+    }
+    
+    #Text_input>input {
+        background-color: rgba(0, 0, 0, 0);
+        border: none;
+        border-bottom: 2px #0F4C75 solid;
+        height: 30px;
+        width: 100%;
+        border-radius: 4px;
+        font-size: 20px;
+        margin-bottom: 30px;
+        -webkit-appearance: none;
+    }
+    
+    #Text_input>label {
+        font-size: 20px;
+        position: absolute;
+        margin-top: 9px;
+        top: 0;
+        left: 0;
+        pointer-events: none;
+        display: inline-flex;
+        user-select: none;
+        outline: none;
+        transition: all 0.3s;
+    }
+    
+    #Text_input {
+        position: relative;
+        padding-top: 13px;
+    }
+    
+    #Text_input input:focus {
+        border-bottom: 2px solid #0F4C75;
+    }
+    
+    #Text_input input::placeholder {
+        color: transparent;
+    }
+    
+    #Text_input>input:focus+label,
+    #Text_input>input:not(:placeholder-shown)+label {
+        font-size: 13px;
+        margin-top: 0;
+        color: #0f4c7577;
+    }
+    
+    #Text_input>input:focus {
+        outline: 0;
+    }
+    
+    #Confirmar_button {
+        padding: 20px;
+        border: 0px;
+        background-color: white;
+        cursor: pointer;
+    }
+    
+    #Input_nome {
+        width: 50%;
+    }
+    
+    #Link_cadastro {
+        transition: 0.3s;
+        font-size: 18px;
+    }
+    
+    #Link_cadastro:visited {
+        color: #000;
+    }
+    
+    #Link_cadastro:hover {
+        color: #818181;
+    }
+    /**
+    *   Formatação Sidenav 
+    */
+    
+    .sidenav {
+        height: 100%;
+        width: 0;
+        position: fixed;
+        z-index: 1;
+        top: 0;
+        left: 0;
+        margin-top: 80px;
+        padding-top: 100px;
+        background-color: #FFFFFF;
+        overflow-x: hidden;
+        transition: 0.5s;
+        text-align: center;
+        border-right: 3px solid #0f4c75;
+    }
+    
+    .sidenav a {
+        padding: 8px 8px 8px 32px;
+        text-decoration: none;
+        font-size: 25px;
+        color: #818181;
+        display: block;
+        transition: 0.3s;
+    }
+    
+    .sidenav a:hover {
+        color: #0f4c75;
+    }
+    
+    .sidenav .closebtn {
+        position: absolute;
+        top: 0;
+        right: 25px;
+        font-size: 36px;
+        margin-left: 50px;
+    }
+    
+    @media screen and (max-height: 450px) {
+        .sidenav {
+            padding-top: 25px;
+        }
+        .sidenav a {
+            font-size: 18px;
+        }
+    }
