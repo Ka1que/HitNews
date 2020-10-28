@@ -65,45 +65,33 @@
         <a href="#">Contact</a>
     </div>
 
-    <div id="Container_conteudo">
-        <div class="Container_noticia">
-            <h1 class="Noticia_titulo">Apenas um exemplo de um TITULO</h1>
+    <div id="Login_area">
+        <a id="Icon_seta" onclick="goBack()">
+            <svg width="44" height="52" viewBox="0 0 44 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.49951 23.5251C0.132676 24.892 0.132676 27.108 1.49951 28.4749L23.7734 50.7487C25.1402 52.1156 27.3563 52.1156 28.7231 50.7487C30.09 49.3819 30.09 47.1658 28.7231 45.799L8.92413 26L28.7231 6.20101C30.09 4.83418 30.09 2.6181 28.7231 1.25126C27.3563 -0.115572 25.1402 -0.115572 23.7734 1.25126L1.49951 23.5251ZM43.0256 22.5L3.97438 22.5V29.5L43.0256 29.5V22.5Z" fill="black"/>
+        </svg>
+        </a>
 
-            <img src=".\madara.jpg" class="Noticia_img" hidden>
+        <form id="Form_login" action="login.html" method="">
 
-            <div class="Container_rodape">
-                <a class="Container_autor" href="#">
-                    <img src=".\naruto.jpg" class="Autor_img">
-                    <h3 class="Autor_nome">Naruto</h3>
-                </a>
+            <h1 id="Login_titulo">Feedback</h1><br /><br />
 
-
-
-                <div class="Container_view">
-                    <svg class="Svg_view" width="44" height="26" viewBox="0 0 44 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.4763 17.7648C11.4763 17.7648 16.0398 26.7575 26.4662 23.1436C26.9805 22.9653 27.4869 22.7509 27.9437 22.4549C29.1808 21.6533 31.8166 19.5127 34.0199 14.804M9.78052 2.60551L12.0748 8.17182" stroke="black" stroke-width="4"/>
-                            <path d="M21.7506 0V5.56632" stroke="black" stroke-width="4"/>
-                            <path d="M32.9227 3.19767L31.4264 7.69809" stroke="black" stroke-width="4"/>
-                            <path d="M1.99997 21.0808C22.8478 -2.13187 42 21.0808 42 21.0808" stroke="black" stroke-width="4"/>
-                        </svg>
-                    <h3 class="Num_view">877</h3>
-                </div>
-
-                <div class="Container_like">
-                    <svg class="Svg_like" width="29" height="30" viewBox="0 0 29 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5.26171 12.4511C2.68928 10.315 2.9884 7.62957 2.9884 7.62957C4.24475 2.07572 8.73148 2.07572 8.73148 2.07572C11.7227 1.34334 15.2523 6.16482 15.2523 6.16482C15.2523 6.16482 17.2265 1.52644 21.7133 2.07572C26.2 2.625 26.9778 5.9207 26.9778 7.62957C26.9778 9.33845 26.9179 10.315 25.4223 12.4511C23.9267 14.5871 15.2523 26 15.2523 26L8.73148 17.5166" stroke="black" stroke-width="4"/>
-                        </svg>
-
-                    <h3 class="Num_like">987</h3>
-                </div>
-
+            <div id="Text_input">
+                <input type="text" id="Input_login" placeholder=" " required>
+                <label id="Text_gmail">Email</label>
             </div>
 
-        </div>
+            <div id="Text_input">
+                <textarea id="Text_opniao" placeholder="deixe sua opnião"></textarea>
+            </div>
+            <br />
+            <button id="Confirmar_button" type="submit">CONFIRMAR</button>
 
-
+        </form>
 
     </div>
+
+    <script src="./js/logic.js"></script>
 
 </body>
 

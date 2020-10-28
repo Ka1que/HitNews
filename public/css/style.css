@@ -264,7 +264,7 @@
         vertical-align: middle;
     }
     /*
-    *       LOGIN E CADASTRO CSS 
+    *       LOGIN , CADASTRO E FEEDBACK CSS 
     */
     
     #Login_area {
@@ -372,6 +372,12 @@
     
     #Link_cadastro:hover {
         color: #818181;
+    }
+    
+    #Text_opniao {
+        width: 80%;
+        height: 100px;
+        font-size: 20px;
     }
     /**
     *   Formatação Sidenav 
