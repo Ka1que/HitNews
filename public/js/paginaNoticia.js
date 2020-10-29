@@ -1,77 +1,69 @@
-/*
-function getIp(callback) {
-    function response(s) {
-        callback(window.userip);
-
-        s.onload = s.onerror = null;
-        document.body.removeChild(s);
-    }
-
-    function trigger() {
-        window.userip = false;
-
-        var s = document.createElement("script");
-        s.async = true;
-        s.onload = function() {
-            response(s);
-        };
-        s.onerror = function() {
-            response(s);
-        };
-
-        s.src = "https://l2.io/ip.js?var=userip";
-        document.body.appendChild(s);
-    }
-
-    if (/^(interactive|complete)$/i.test(document.readyState)) {
-        trigger();
-    } else {
-        document.addEventListener('DOMContentLoaded', trigger);
-    }
+/**
+ * ABRIR MENU LATERAL
+ */
+function openNav() {
+    document.getElementById("menu_sidenav_container").style.display = "none";
+    document.getElementById("mySidenav").style.width = "30%";
 }
 
-getIp(function(ip) {
-    console.log(ip);
-});
+function closeNav() {
+    document.getElementById("menu_sidenav_container").style.display = "block";
+    document.getElementById("mySidenav").style.width = "0";
+}
+//função de igual o voltar do navegador
+function goBack() {
+    window.history.back()
+}
+
+var container = document.getElementsByClassName("Container_conteudo")[0];
+
+/**
+ * Função que é ativada quando o DOM pode ser executado
+ */
+document.addEventListener("DOMContentLoaded", function() {
 
 
-  UMA TENTATIVA Q DEU ERRADO MAIS TEM INFORMAÇÕES IMPORTANTES
-document.getElementById('Input_login').addEventListener("focus", function() { tittleUp(this, "Text_gmail"); });
-document.getElementById('Input_senha').addEventListener("focus", function() { tittleUp(this, "Text_gmail"); });
 
-document.getElementById('Input_login').addEventListener("blur", function() { tittleDown(this, "Text_gmail"); });
 
-function tittleUp(element, titulo) {
-    const h3 = document.getElementById(titulo)
 
-    h3.style.top = "5px";
-}*/
+    
+    //TODO pegar noticia do banco e fazer noticias terem sua própria página
+     var noticia = {
+         "autor" : {
+           "imagem" : "https://viciados.net/wp-content/uploads/2020/02/Naruto-Cl%C3%A1ssico-e-Naruto-Shippuden-fillers.jpg",
+           "nome" : "Naruto"
+         },
+         "conteudo" : "olha só, uma notícia de teste, quem diria que a gente iria testar uma noticia pra quando as noticias de verdade forem adicionadas",
+         "curtidas" : 0,
+         "fonte" : "sei lá, minha cabeça?",
+         "imagem" : "https://portal.ifrn.edu.br/campus/mossoro/biblioteca/imagens/templates/image",
+         "titulo" : "Teste",
+         "views" : 0,
+         "data": "30/10/2020"
+       }
+       carregarNoticia(noticia);
+     
+ });
 
-var container_conteudo = document.getElementsByClassName("Container_conteudo")[0];
-
-//#region NOTICIA (Crianção de uma método para colocar as noticias na página)
 
 /**
  * Coloca uma noticia dentro do container
  * @param {Object} infoNot Objeto da noticia em formato de Json
  */
-function colocarNoticiaContainer(infoNot)
+function carregarNoticia(infoNot)
 {
-    let container_noticia =  document.createElement("div"); //cria div que vai conter a noticia
-    container_noticia.classList.add("Container_noticia"); //diz que a classe da div é Container_noticia para o css
+    let container_noticia = document.createElement("div");
+    container_noticia.classList.add("Container_noticia");
 
-    let linkNot = document.createElement("a"); //cria tag a para depois adicionar o link da página da noticia
-    linkNot.href = "./noticia.html"; //adiciona o link da página da notica para a tag "a" criada
-    
-    let titulo_noticia = document.createElement("h1"); //cria a tag do titulo da notícia
-    titulo_noticia.classList.add("Noticia_titulo"); //diz que a classe do h1 é Noticia_titulo
-    titulo_noticia.innerHTML = infoNot.titulo; //coloca o titulo da noticia dentro do h1
-    linkNot.appendChild(titulo_noticia); //Deixa o h1 da noticia como filho da tag "a"
+    let titulo_noticia = document.createElement("h1");
+    titulo_noticia.classList.add("Noticia_titulo");
+    titulo_noticia.innerHTML = infoNot.titulo;
+    container_noticia.appendChild(titulo_noticia);
 
     let imagem_noticia = document.createElement("img"); //cria a tag de imagem para a noticia
     imagem_noticia.src = infoNot.imagem; //coloca a imagem da noticia na tag
     imagem_noticia.classList.add("Noticia_img"); //coloca a imagem da noticia dentro da tag
-    linkNot.appendChild(imagem_noticia);//deixa a img como filha da tag "a"
+    container_noticia.appendChild(imagem_noticia);//deixa a img como filha da tag "a"
 
     let rodape_noticia = document.createElement("div") //cria div que vai ser o rodapé da noticia
     rodape_noticia.classList.add("Container_rodape"); //diz que a classe da div é Container_rodape
@@ -172,58 +164,39 @@ function colocarNoticiaContainer(infoNot)
     contador_likes.innerHTML = infoNot.curtidas;
     container_likes.appendChild(contador_likes);
 
+    let container_conteudo_noticia = document.createElement("div");
+    container_conteudo_noticia.id = "container_conteudo"
 
+    let conteudo_noticia = document.createElement("div");
+    conteudo_noticia.id = "conteudo_noticia";
+
+    let label_conteudo = document.createElement("label");
+    label_conteudo.innerHTML = infoNot.conteudo;
+    conteudo_noticia.appendChild(label_conteudo);
+    container_conteudo_noticia.appendChild(conteudo_noticia);
     
+    container_conteudo_noticia.appendChild(document.createElement("BR"));//adiciona uma tag br
+    container_conteudo_noticia.appendChild(document.createElement("BR"));
+    
+    let h3_fonte = document.createElement("h3");
+    h3_fonte.innerHTML = "Fonte:";
+    container_conteudo_noticia.appendChild(h3_fonte);
+    
+    let fonte_noticia = document.createElement("h4");
+    fonte_noticia.innerHTML = infoNot.fonte;
+    container_conteudo_noticia.appendChild(fonte_noticia);
+    container_conteudo_noticia.appendChild(document.createElement("BR"));
 
 
 
-
-    container_noticia.appendChild(linkNot);//coloca a tag "a" como filho da noticia
     rodape_noticia.appendChild(linkAutor);
     rodape_noticia.appendChild(container_views);
     rodape_noticia.appendChild(container_likes);
     container_noticia.appendChild(rodape_noticia);
-    container_conteudo.appendChild(container_noticia); //coloca a noticia dentro do container de noticias
-    
-
-}
-//#endregion NOTICIA
-
-/**
- * ABRIR MENU LATERAL
- */
-function openNav() {
-    document.getElementById("menu_sidenav_container").style.display = "none";
-    document.getElementById("mySidenav").style.width = "30%";
+    container_noticia.appendChild(container_conteudo_noticia);
+    container.appendChild(container_noticia);
 }
 
-function closeNav() {
-    document.getElementById("menu_sidenav_container").style.display = "block";
-    document.getElementById("mySidenav").style.width = "0";
-}
-//função de igual o voltar do navegador
-function goBack() {
-    window.history.back()
-}
 
-/**
- * Função que é ativada quando o DOM pode ser executado
- */
-document.addEventListener("DOMContentLoaded", function() {
-  /**
-    var oi = document.getElementsByClassName("Noticia_titulo")[0].innerHTML;
-    console.log(oi.length);
-    const eita = "Se eu vi mais longe, foi por estar sobre ombros de gigantes. O ciúme vê com lentes, que fazem grandes as coisas pequenas, gigantes os anões, verdades as suspeitas.";
-    console.log(eita.length);
-    Comentei aqui pra fazer as minhas coisas -Enrique
-    */
-    
-    /**
-     * pega as noticias do nó de noticias no banco de dados e adiciona no site
-     */
-    firebase.database().ref("noticias").on("child_added", snapshot =>{
-            colocarNoticiaContainer(snapshot.val());
-    });
 
-})
 
