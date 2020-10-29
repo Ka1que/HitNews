@@ -12,6 +12,7 @@
     
     a {
         text-decoration: none;
+        color: initial;
     }
     
     a:visited {
@@ -176,6 +177,7 @@
     
     .Container_noticia {
         height: auto;
+        color: black;
         overflow-x: hidden;
         font-family: 'Times New Roman', Times, serif;
         padding-bottom: 150px;
@@ -269,7 +271,7 @@
         vertical-align: middle;
     }
     
-    #container_conteudo {
+    #container_conteudo_noticia {
         height: auto;
         font-family: 'Times New Roman', Times, serif;
         width: 100%;
@@ -400,6 +402,11 @@
         width: 80%;
         height: 100px;
         font-size: 20px;
+    }
+    
+    #mensagem {
+        color: red;
+        font-size: 30px;
     }
     /**
     *   Formatação Sidenav 

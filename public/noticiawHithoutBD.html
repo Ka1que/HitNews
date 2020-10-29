@@ -6,7 +6,6 @@
     <title>HITNEWS</title>
 
     <link rel="stylesheet" type="text/css" href="./css/style.css">
-    
 
 </head>
 
@@ -65,11 +64,7 @@
         <a href="#">Contact</a>
     </div>
 
-    
-
-    <div id="Container_conteudo" class="Container_conteudo">
-        <!--
-        Noticia anterior usada de base
+    <div id="Container_conteudo">
         <div class="Container_noticia">
             <h1 class="Noticia_titulo">Apenas um exemplo de um TITULO</h1>
 
@@ -80,8 +75,6 @@
                     <img src=".\naruto.jpg" class="Autor_img">
                     <h3 class="Autor_nome">Naruto</h3>
                 </a>
-
-
 
                 <div class="Container_view">
                     <svg class="Svg_view" width="44" height="26" viewBox="0 0 44 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -103,11 +96,11 @@
 
             </div><br />
 
-            <div id="container_conteudo">
+            <div id="container_conteudo_noticia">
                 <div id="conteudo_noticia">
                     <label>Seu início foi declarado por Tobi quando os cinco Kage e o líder do País do Ferro unanimemente recusaram-se a entregar o Oito-Caudas e o Nove-Caudas para o seu Plano Olho da Lua. Ele, então, afirmou que ele iria usar os sete bijū já
                         capturados pela Akatsuki na luta contra o mundo ninja. Depois disso, o Quinto Kazekage, a Quinta Mizukage, o Quarto Raikage, o Terceiro Tsuchikage e o General Mifune concordaram em formar uma Aliança Shinobi, reunindo todos os
-                        seus recursos contra Tobi. Mais tarde, os daimyō dos Cinco Grandes Países Shinobi aprovaram a coligação e a Quinta Hokage juntou-se a aliança enquanto Kabuto Yakushi formou uma aliança com Tobi. Ambas as facções começaram a reunir
+                        seus recursos contra Tobi.<br /> Mais tarde, os daimyō dos Cinco Grandes Países Shinobi aprovaram a coligação e a Quinta Hokage juntou-se a aliança enquanto Kabuto Yakushi formou uma aliança com Tobi. Ambas as facções começaram a reunir
                         suas forças e coletar informações sobre o outro lado, em preparação para as hostilidades futuras. Kisame coletou informações sobre a força militar de Kumogakure e sobre Killer B, enquanto viajava com ele por toda parte escondido
                         dentro da Samehada. Anko Mitarashi e seu time rastrearam Kabuto Yakushi, que os levou para o quartel general de Tobi. Outros times da Aliança Shinobi se espalharam para coletar outras informações sobre a Akatsuki e seus esconderijos.
                         Kabuto formou uma aliança com Tobi, demonstrando seu uso da técnica da Invocação: Reencarnação do Mundo Impuro, aumentando as forças da Akatsuki com a reencarnação dos membros falecidos da organização. Os Cinco Kage decidiram esconder
@@ -121,36 +114,17 @@
                         fornecidos por Kabuto compondo o exército de Tobi.</label>
                 </div>
                 <br /><br />
-                <h3>Bibliografia: </h3>
-                <h4>noticia totalmente original e imagem retirada do anime Naruto Shippuden</h4>
+                <p id="fonte_title">Bibliografia: </h3>
+                    <h4>noticia totalmente original e imagem retirada do anime Naruto Shippuden</h4>
             </div>
 
-        -->
+
 
         </div>
-        <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
 
-        <!-- TODO: Add SDKs for Firebase products that you want to use
-            https://firebase.google.com/docs/web/setup#available-libraries -->
-        <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+        <script src="./js/logic.js"></script>
+        <script src="./js/nav.js"></script>
 
-        <script>
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        var firebaseConfig = {
-            apiKey: "AIzaSyBB7MMwkJFt9Rclu-gu26K7C-Rgnu3IWn4",
-            authDomain: "hitnews-be38c.firebaseapp.com",
-            databaseURL: "https://hitnews-be38c.firebaseio.com",
-            projectId: "hitnews-be38c",
-            storageBucket: "hitnews-be38c.appspot.com",
-            messagingSenderId: "779470699260",
-            appId: "1:779470699260:web:675f129b5fc57d91ee3579",
-            measurementId: "G-CXR3JTJ2P2"
-        };
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        </script>
-        <script src="./js/paginaNoticia.js"></script>
 </body>
 
 </html>

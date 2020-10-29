@@ -66,15 +66,19 @@
 
     <div id="Login_area">
 
+
+
         <a id="Icon_seta" onclick="goBack()">
             <svg width="44" height="52" viewBox="0 0 44 52" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1.49951 23.5251C0.132676 24.892 0.132676 27.108 1.49951 28.4749L23.7734 50.7487C25.1402 52.1156 27.3563 52.1156 28.7231 50.7487C30.09 49.3819 30.09 47.1658 28.7231 45.799L8.92413 26L28.7231 6.20101C30.09 4.83418 30.09 2.6181 28.7231 1.25126C27.3563 -0.115572 25.1402 -0.115572 23.7734 1.25126L1.49951 23.5251ZM43.0256 22.5L3.97438 22.5V29.5L43.0256 29.5V22.5Z" fill="black"/>
             </svg>
         </a>
 
-        <form id="Form_login" action="login.html" method="">
+        <form id="Form_login" action="#" method="">
 
             <h1 id="Login_titulo">Cadastro</h1><br /><br />
+
+            <div id="mensagem"></div><br />
 
             <div id="Text_input">
                 <input type="text" id="Input_login" placeholder=" " required>
@@ -92,15 +96,15 @@
             </div>
 
             <div id="Text_input" style="width: 30%;display: inline-block;">
-                <input type="number" id="Input_data" placeholder=" " max="31" required>
+                <input type="number" id="Input_dia" placeholder=" ">
                 <label id="Text_data">Dia</label>
             </div>
             <div id="Text_input" style="width: 30%;display: inline-block;">
-                <input type="number" id="Input_data" placeholder=" " max="12" required>
+                <input type="number" id="Input_mes" placeholder=" ">
                 <label id="Text_data">mes</label>
             </div>
             <div id="Text_input" style="width: 37%;display: inline-block;">
-                <input type="number" id="Input_data" placeholder=" " max="3000" required>
+                <input type="number" id="Input_ano" placeholder=" ">
                 <label id="Text_data">ano</label>
             </div>
 
@@ -113,13 +117,42 @@
                 <input type="password" id="Input_senha_repeat" placeholder=" " required>
                 <label id="Text_senha_repeat">Repita sua senha</label>
             </div>
-            <button id="Confirmar_button" type="submit">CONFIRMAR</button>
+
+            <button id="Confirmar_button" onclick="validacaoCadastro()">CONFIRMAR</button>
+            <br /><br />
+            <div id="mensagem"></div>
 
         </form>
 
     </div>
 
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+             https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyBB7MMwkJFt9Rclu-gu26K7C-Rgnu3IWn4",
+            authDomain: "hitnews-be38c.firebaseapp.com",
+            databaseURL: "https://hitnews-be38c.firebaseio.com",
+            projectId: "hitnews-be38c",
+            storageBucket: "hitnews-be38c.appspot.com",
+            messagingSenderId: "779470699260",
+            appId: "1:779470699260:web:675f129b5fc57d91ee3579",
+            measurementId: "G-CXR3JTJ2P2"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+
     <script src="./js/logic.js"></script>
+    <script src="./js/nav.js"></script>
+    <script src="./js/validacao.js"></script>
 
 </body>
 
