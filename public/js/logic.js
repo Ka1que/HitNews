@@ -221,18 +221,6 @@ document.addEventListener("DOMContentLoaded", function() {
     /**
      * Objeto teste de uma noticia
      */
-    var noticia = {
-        titulo: "Titulo Noticia Teste",
-        conteudo : "olha só, uma notícia de teste, quem diria que a gente iria testar uma noticia pra quando as noticias de verdade forem adicionadas",
-        imagem: "https://i.kym-cdn.com/entries/icons/mobile/000/032/491/Cortex_daa.jpg",
-        fonte: "sei lá, minha cabeça?",
-        autor: {nome: "Naruto", imagem: "naruto.jpg"},
-        curtidas: 0,
-        views: 0
-    }
-
-    colocarNoticiaContainer(noticia);
-
     firebase.database().ref("noticias").once("value").then(snapshot =>{
         console.log(snapshot.val());
         snapshot.forEach(value => {

@@ -1,0 +1,23 @@
+{
+"noticia-teste":{
+    "autor" : {
+      "imagem" : "https://viciados.net/wp-content/uploads/2020/02/Naruto-Cl%C3%A1ssico-e-Naruto-Shippuden-fillers.jpg",
+      "nome" : "Naruto"
+    },
+    "conteudo" : "olha só, uma notícia de teste, quem diria que a gente iria testar uma noticia pra quando as noticias de verdade forem adicionadas",
+    "curtidas" : 0,
+    "fonte" : "sei lá, minha cabeça?",
+    "imagem" : "https://portal.ifrn.edu.br/campus/mossoro/biblioteca/imagens/templates/image",
+    "titulo" : "teste",
+    "views" : 0
+  },
+"noticia-teste-dois":{
+    "titulo": "Titulo Noticia Teste",
+    "conteudo" : "olha só, uma notícia de teste, quem diria que a gente iria testar uma noticia pra quando as noticias de verdade forem adicionadas",
+    "imagem": "https://i.kym-cdn.com/entries/icons/mobile/000/032/491/Cortex_daa.jpg",
+    "fonte": "sei lá, minha cabeça?",
+    "autor": {"nome": "Naruto", "imagem": "naruto.jpg"},
+    "curtidas": 0,
+    "views": 0
+}
+}
