@@ -233,7 +233,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
     colocarNoticiaContainer(noticia);
 
+    firebase.database().ref("noticias").once("value").then(snapshot =>{
+        console.log(snapshot.val());
+        snapshot.forEach(value => {
 
+            colocarNoticiaContainer(value.val());
+        });
+
+    });
 
 })
 
