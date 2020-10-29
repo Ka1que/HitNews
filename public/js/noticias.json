@@ -9,7 +9,8 @@
     "fonte" : "sei lá, minha cabeça?",
     "imagem" : "https://portal.ifrn.edu.br/campus/mossoro/biblioteca/imagens/templates/image",
     "titulo" : "teste",
-    "views" : 0
+    "views" : 0,
+    "data": "30/10/2020"
   },
 "noticia-teste-dois":{
     "titulo": "Titulo Noticia Teste",
@@ -18,6 +19,7 @@
     "fonte": "sei lá, minha cabeça?",
     "autor": {"nome": "Naruto", "imagem": "naruto.jpg"},
     "curtidas": 0,
-    "views": 0
+    "views": 0,
+    "data": "30/10/2020"
 }
 }

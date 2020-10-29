@@ -217,17 +217,11 @@ document.addEventListener("DOMContentLoaded", function() {
     Comentei aqui pra fazer as minhas coisas -Enrique
     */
     
-    
     /**
-     * Objeto teste de uma noticia
+     * pega as noticias do nó de noticias no banco de dados e adiciona no site
      */
-    firebase.database().ref("noticias").once("value").then(snapshot =>{
-        console.log(snapshot.val());
-        snapshot.forEach(value => {
-
-            colocarNoticiaContainer(value.val());
-        });
-
+    firebase.database().ref("noticias").on("child_added", snapshot =>{
+            colocarNoticiaContainer(snapshot.val());
     });
 
 })
