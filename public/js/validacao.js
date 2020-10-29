@@ -46,7 +46,7 @@ function validacaoCadastro() {
         mensagem("por favor insira uma data válida");
         return;
     }
-    if (date.getFullYear() - ano >= 18) {
+    if (date.getFullYear() - ano <= 18) {
         console.log("sim1");
         if (mes >= date.getMonth()) {
             console.log("sim2");
@@ -79,3 +79,7 @@ function validacaoCadastro() {
     console.log("cadastro Okay")
 
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+    console.log(date);
+});

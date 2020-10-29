@@ -47,7 +47,7 @@ function tittleUp(element, titulo) {
     h3.style.top = "5px";
 }*/
 
-var container_conteudo = document.getElementsByClassName("Container_conteudo")[0];
+var container_conteudo = document.getElementById("Container_conteudo");
 
 //#region NOTICIA (Crianção de uma método para colocar as noticias na página)
 
@@ -106,6 +106,7 @@ function colocarNoticiaContainer(infoNot) {
     //#region PATHS (criando paths para o svg_view)
 
     //Kaique, por que você me fez escrever todos esses números? -Enrique
+    // vc que vacilou e não resummiu em 1 arquivo e importou como uma biblioteca de svg 
     let views_path1 = document.createElementNS("http://www.w3.org/2000/svg", "path");
     views_path1.setAttribute("d", "M11.4763 17.7648C11.4763 17.7648 16.0398 26.7575 26.4662 23.1436C26.9805 22.9653 27.4869 22.7509 27.9437 22.4549C29.1808 21.6533 31.8166 19.5127 34.0199 14.804M9.78052 2.60551L12.0748 8.17182");
     views_path1.setAttribute("stroke", "black");
