@@ -13,6 +13,11 @@
     a {
         text-decoration: none;
     }
+    
+    a:visited {
+        text-decoration: none;
+        color: initial;
+    }
     /**
       *   BARRA DO MENU
       */
@@ -95,9 +100,6 @@
             height: 6%;
             min-height: 0;
         }
-        body {
-            background-color: black;
-        }
     }
     /*
     *       Pesquisa
@@ -152,14 +154,14 @@
         width: 0px;
     }
     /*
-    *       Area central da Página
+    *       Area central da Página E Noticia
     */
     /* obs: as paginas terão uma area central 
     que agrupará tudo o que o usuario for visualizar 
     podendo ser um noticia, perfil de um usuario, Etc*/
     
     #Container_conteudo {
-        background-color: #d5d5d5;
+        /*background-color: #d5d5d5;*/
         margin-left: 20%;
         top: 50px;
         height: auto;
@@ -174,9 +176,12 @@
     
     .Container_noticia {
         height: auto;
-        padding-bottom: 100px;
+        overflow-x: hidden;
+        font-family: 'Times New Roman', Times, serif;
+        padding-bottom: 150px;
         width: 100%;
-        margin-bottom: 150px;
+        margin-bottom: 0px;
+        border-bottom: 2px solid #000;
         padding-top: 20px;
         background-color: white;
     }
@@ -263,8 +268,25 @@
         display: inline-block;
         vertical-align: middle;
     }
+    
+    #container_conteudo {
+        height: auto;
+        font-family: 'Times New Roman', Times, serif;
+        width: 100%;
+        padding: 20px;
+        margin-top: 100px;
+        border-bottom: 2px solid #000;
+        padding-top: 20px;
+        background-color: #fff;
+        text-align: left;
+    }
+    
+    #conteudo_noticia {
+        width: 70%;
+        padding: 0px;
+    }
     /*
-    *       LOGIN E CADASTRO CSS 
+    *       LOGIN , CADASTRO E FEEDBACK CSS 
     */
     
     #Login_area {
@@ -373,6 +395,12 @@
     #Link_cadastro:hover {
         color: #818181;
     }
+    
+    #Text_opniao {
+        width: 80%;
+        height: 100px;
+        font-size: 20px;
+    }
     /**
     *   Formatação Sidenav 
     */
@@ -421,4 +449,41 @@
         .sidenav a {
             font-size: 18px;
         }
+    }
+    /**
+        PAGINA DO USUARIO
+    */
+    
+    #container_perfil {
+        margin-top: 20px;
+        text-align: center;
+        width: 100%;
+        height: auto;
+        background-color: #fff;
+        display: block;
+    }
+    
+    #container_img_usu {
+        vertical-align: middle;
+        overflow: hidden;
+    }
+    
+    #img_usu {
+        top: 500px;
+        width: 400px;
+        height: auto;
+        left: 5%;
+        border-radius: 35px;
+    }
+    
+    #banner_usu {
+        width: 100%;
+    }
+    
+    #tittle_timeline {
+        color: #81818181;
+    }
+    
+    #nome_usu {
+        font-size: 50px;
     }
