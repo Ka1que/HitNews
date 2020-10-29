@@ -64,10 +64,3 @@ function closeNav() {
 function goBack() {
     window.history.back()
 }
-
-document.addEventListener("DOMContentLoaded", function() {
-    var oi = document.getElementsByClassName("Noticia_titulo")[0].innerHTML;
-    console.log(oi.length);
-    const eita = "Se eu vi mais longe, foi por estar sobre ombros de gigantes. O ciúme vê com lentes, que fazem grandes as coisas pequenas, gigantes os anões, verdades as suspeitas.";
-    console.log(eita.length);
-})

@@ -72,7 +72,7 @@
             </svg>
         </a>
 
-        <form id="Form_login" action="login.html" method="">
+        <form id="Form_login" action="#" method="">
 
             <h1 id="Login_titulo">Cadastro</h1><br /><br />
 
@@ -92,15 +92,15 @@
             </div>
 
             <div id="Text_input" style="width: 30%;display: inline-block;">
-                <input type="number" id="Input_data" placeholder=" " max="31" required>
+                <input type="number" id="Input_dia" placeholder=" ">
                 <label id="Text_data">Dia</label>
             </div>
             <div id="Text_input" style="width: 30%;display: inline-block;">
-                <input type="number" id="Input_data" placeholder=" " max="12" required>
+                <input type="number" id="Input_mes" placeholder=" ">
                 <label id="Text_data">mes</label>
             </div>
             <div id="Text_input" style="width: 37%;display: inline-block;">
-                <input type="number" id="Input_data" placeholder=" " max="3000" required>
+                <input type="number" id="Input_ano" placeholder=" ">
                 <label id="Text_data">ano</label>
             </div>
 
@@ -113,13 +113,33 @@
                 <input type="password" id="Input_senha_repeat" placeholder=" " required>
                 <label id="Text_senha_repeat">Repita sua senha</label>
             </div>
-            <button id="Confirmar_button" type="submit">CONFIRMAR</button>
+            <button id="Confirmar_button" onclick="validacaoCadastro()">CONFIRMAR</button>
+            <br /><br />
+            <div id="mensagem"></div>
 
         </form>
 
     </div>
 
+    <!-- Firebase App is always required and must be first -->
+    <script src="https://www.gstatic.com/firebasejs/5.4.1/firebase-app.js"></script>
+    <!-- Inicializa o firebase -->
+    <script>
+        var config = {
+            apiKey: "AIzaSyBB7MMwkJFt9Rclu-gu26K7C-Rgnu3IWn4",
+            authDomain: "hitnews-be38c.firebaseapp.com",
+            databaseURL: "https://hitnews-be38c.firebaseio.com",
+            projectId: "hitnews-be38c",
+            storageBucket: "hitnews-be38c.appspot.com",
+            messagingSenderId: "779470699260",
+            appId: "1:779470699260:web:675f129b5fc57d91ee3579",
+            measurementId: "G-CXR3JTJ2P2"
+        };
+        firebase.initializeApp(config);
+    </script>
+
     <script src="./js/logic.js"></script>
+    <script src="./js/validacao.js"></script>
 
 </body>
 
