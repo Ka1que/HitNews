@@ -17,7 +17,7 @@ function validacaoCadastro() {
     console.log(`${nome} ${email} ${dia} ${mes} ${ano} ${senha} ${senha2} ${sobrenome}`)
 
     if (email == "") {
-        mensagem("nome não pode estar vazio");
+        mensagem("email não pode estar vazio");
         return;
     }
     if (email.indexOf(" ") >= 0) {
@@ -76,10 +76,23 @@ function validacaoCadastro() {
         return;
     }
 
-    console.log("cadastro Okay")
+    cadastrar();
 
 }
 
 document.addEventListener("DOMContentLoaded", function() {
     console.log(date);
 });
+
+function cadastrar() {
+    var email = document.getElementById("Input_login").value;;
+    var senha = document.getElementById("Input_senha").value;
+
+    firebase.auth().createUserWithEmailAndPassword(email, senha).then(user => {
+        console.log("usuario", user);
+        alert("Usuario cadastrado e logado");
+    }).catch(error => {
+        console.log("credenciais invalidas: " + error);
+        mensagem("credenciais inválidas")
+    });
+};
