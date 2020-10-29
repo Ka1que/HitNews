@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HITNEWS</title>
+
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <script src="./js/logic.js"></script>
+
+</head>
+
+<body onload="">
+
+    <div id="menu">
+        <a href="./index.html" id="link_logo">
+            <div id="logo">
+                <div id="retangle"></div>
+            </div>
+        </a>
+
+        <div id="menu_sidenav_container" onclick="openNav()">
+            <div id="menu_icon">
+                <svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect y="47.8333" width="70" height="11.6667" rx="5.83333" fill="black"/>
+                <rect y="29.1667" width="70" height="11.6667" rx="5.83333" fill="black"/>
+                <rect y="10.5" width="70" height="11.6667" rx="5.83333" fill="black"/>
+                </svg>
+            </div>
+
+        </div>
+
+        <div class="search-box">
+            <input class="search-txt" type="text" name="" placeholder="Type to search">
+            <a class="search-btn" href="#">
+                <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M29.7346 26.1404L23.9827 20.3885C23.7231 20.1289 23.3712 19.9846 23.0019 19.9846H22.0615C23.6539 17.9481 24.6 15.3865 24.6 12.6C24.6 5.97116 19.2289 0.600006 12.6 0.600006C5.97116 0.600006 0.600006 5.97116 0.600006 12.6C0.600006 19.2289 5.97116 24.6 12.6 24.6C15.3865 24.6 17.9481 23.6539 19.9846 22.0615V23.0019C19.9846 23.3712 20.1289 23.7231 20.3885 23.9827L26.1404 29.7346C26.6827 30.2769 27.5596 30.2769 28.0962 29.7346L29.7289 28.1019C30.2712 27.5596 30.2712 26.6827 29.7346 26.1404ZM12.6 19.9846C8.52116 19.9846 5.21539 16.6846 5.21539 12.6C5.21539 8.52116 8.51539 5.21539 12.6 5.21539C16.6789 5.21539 19.9846 8.51539 19.9846 12.6C19.9846 16.6789 16.6846 19.9846 12.6 19.9846Z" fill="black"/>
+                </svg>
+            </a>
+        </div>
+
+
+        <a class="acesso">
+            <i class="fas fa-user-circle fa-4x "></i>
+        </a>
+
+        <a href="./login.html" id="Login_link">Login</a>
+
+        <div id="container_usuario_link">
+            <svg width="32" height="28" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M32 26.1039C31.3704 23.4476 29.4389 21.032 26.5432 19.2797C23.6476 17.5274 19.7786 17.3354 15.9658 17.3034C12.153 17.2713 8.6389 17.4013 5.68504 19.1044C2.73119 20.8076 0.718893 23.19 0 25.8351L15.9658 28L32 26.1039Z" fill="black"/>
+                <ellipse cx="15.8885" cy="7.07866" rx="7.00077" ry="7.07866" fill="#0B0B0B"/>
+            </svg>
+        </div>
+
+
+    </div>
+
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#">Pagina Inicial</a>
+        <a href="feedback.html">Deixe seu Feedback</a>
+        <a href="#">sobre Nós</a>
+        <a href="#">Contact</a>
+    </div>
+
+    <div id="Container_conteudo">
+        <div class="Container_noticia">
+            <h1 class="Noticia_titulo">Apenas um exemplo de um TITULO</h1>
+
+            <img src=".\madara.jpg" class="Noticia_img">
+
+            <div class="Container_rodape">
+                <a class="Container_autor" href="usu_perfil.html">
+                    <img src=".\naruto.jpg" class="Autor_img">
+                    <h3 class="Autor_nome">Naruto</h3>
+                </a>
+
+
+
+                <div class="Container_view">
+                    <svg class="Svg_view" width="44" height="26" viewBox="0 0 44 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M11.4763 17.7648C11.4763 17.7648 16.0398 26.7575 26.4662 23.1436C26.9805 22.9653 27.4869 22.7509 27.9437 22.4549C29.1808 21.6533 31.8166 19.5127 34.0199 14.804M9.78052 2.60551L12.0748 8.17182" stroke="black" stroke-width="4"/>
+                            <path d="M21.7506 0V5.56632" stroke="black" stroke-width="4"/>
+                            <path d="M32.9227 3.19767L31.4264 7.69809" stroke="black" stroke-width="4"/>
+                            <path d="M1.99997 21.0808C22.8478 -2.13187 42 21.0808 42 21.0808" stroke="black" stroke-width="4"/>
+                        </svg>
+                    <h3 class="Num_view">877</h3>
+                </div>
+
+                <div class="Container_like">
+                    <svg class="Svg_like" width="29" height="30" viewBox="0 0 29 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5.26171 12.4511C2.68928 10.315 2.9884 7.62957 2.9884 7.62957C4.24475 2.07572 8.73148 2.07572 8.73148 2.07572C11.7227 1.34334 15.2523 6.16482 15.2523 6.16482C15.2523 6.16482 17.2265 1.52644 21.7133 2.07572C26.2 2.625 26.9778 5.9207 26.9778 7.62957C26.9778 9.33845 26.9179 10.315 25.4223 12.4511C23.9267 14.5871 15.2523 26 15.2523 26L8.73148 17.5166" stroke="black" stroke-width="4"/>
+                        </svg>
+
+                    <h3 class="Num_like">987</h3>
+                </div>
+
+            </div><br />
+
+            <div id="container_conteudo">
+                <div id="conteudo_noticia">
+                    <label>Seu início foi declarado por Tobi quando os cinco Kage e o líder do País do Ferro unanimemente recusaram-se a entregar o Oito-Caudas e o Nove-Caudas para o seu Plano Olho da Lua. Ele, então, afirmou que ele iria usar os sete bijū já
+                        capturados pela Akatsuki na luta contra o mundo ninja. Depois disso, o Quinto Kazekage, a Quinta Mizukage, o Quarto Raikage, o Terceiro Tsuchikage e o General Mifune concordaram em formar uma Aliança Shinobi, reunindo todos os
+                        seus recursos contra Tobi. Mais tarde, os daimyō dos Cinco Grandes Países Shinobi aprovaram a coligação e a Quinta Hokage juntou-se a aliança enquanto Kabuto Yakushi formou uma aliança com Tobi. Ambas as facções começaram a reunir
+                        suas forças e coletar informações sobre o outro lado, em preparação para as hostilidades futuras. Kisame coletou informações sobre a força militar de Kumogakure e sobre Killer B, enquanto viajava com ele por toda parte escondido
+                        dentro da Samehada. Anko Mitarashi e seu time rastrearam Kabuto Yakushi, que os levou para o quartel general de Tobi. Outros times da Aliança Shinobi se espalharam para coletar outras informações sobre a Akatsuki e seus esconderijos.
+                        Kabuto formou uma aliança com Tobi, demonstrando seu uso da técnica da Invocação: Reencarnação do Mundo Impuro, aumentando as forças da Akatsuki com a reencarnação dos membros falecidos da organização. Os Cinco Kage decidiram esconder
+                        os dois jinchūriki restantes, Naruto e Killer B, em uma ilha no País do Relâmpago. Esconder Naruto e Killer B teve o resultado não intencional de permitir que Naruto aprendesse a controlar o chakra do Nove-Caudas, assim como Killer
+                        B tem do Oito-Caudas (no anime, no entanto, Tsunade tinha a intenção de que Naruto treinasse com B desde o início). Tendo sido bem sucedido em seu treinamento, Naruto exibiu um aumento de velocidade e força ao usar o chakra controlado
+                        do Nove-Caudas, mas não tinha o mesmo requinte que Killer B exibiu ao usar o do Oito-Caudas, colidindo com a parede e esmagando rochas sempre que ele usa o chakra do Nove-Caudas. Apesar de ter sido capturado no final e cometer
+                        suicídio para manter as informações que conseguiu em segredo, Kisame foi capaz de terminar as preparações da Akatsuki para a Guerra ao enviar um tubarão invocação com um pergaminho para seus companheiros, divulgando a localização
+                        aproximada da Ilha Tartaruga. Com a batalha entre as duas forças parecendo estar próxima, Tobi enviou Kabuto para recuperar o Nove-Caudas e o Oito-Caudas com o Deidara reencarnado, mas foi parado por Ōnoki, Akatsuchi e Kurotsuchi,
+                        que estavam indo reforçar as forças na Ilha da Tartaruga. Kabuto escapou com Yamato, aumentando ainda mais as fontes de informação que a Akatsuki tinha sobre a Aliança Shinobi e também fortalecendo os clones do Exército de Zetsu
+                        Branco com os poderes de Yamato. Ambas as Forças Aliadas Shinobi e a Akatsuki acumularam forças consideráveis ​​para a guerra; 80,000 shinobi e samurais no total compõem a Aliança contra 100,000 clones do Zetsu e shinobi reencarnados
+                        fornecidos por Kabuto compondo o exército de Tobi.</label>
+                </div>
+                <br /><br />
+                <h3>Bibliografia: </h3>
+                <h4>noticia totalmente original e imagem retirada do anime Naruto Shippuden</h4>
+            </div>
+
+
+
+        </div>
+
+</body>
+
+</html>
