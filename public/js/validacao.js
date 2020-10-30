@@ -93,7 +93,7 @@ function cadastrar() {
         console.log("usuario", user);
 
         var infos = {
-            Nome: document.getElementById("Input_nome").value,
+            nome: document.getElementById("Input_nome").value,
             sobrenome: document.getElementById("Input_sobrenome").value,
             data_nascimento: {
                 dia: document.getElementById("Input_dia").value,
