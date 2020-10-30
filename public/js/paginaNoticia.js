@@ -163,7 +163,7 @@ function carregarNoticia(infoNot) {
     container_likes.appendChild(contador_likes);
 
     let container_conteudo_noticia = document.createElement("div");
-    container_conteudo_noticia.id = "container_conteudo"
+    container_conteudo_noticia.id = "container_conteudo_noticia"
 
     let conteudo_noticia = document.createElement("div");
     conteudo_noticia.id = "conteudo_noticia";
