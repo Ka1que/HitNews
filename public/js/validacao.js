@@ -17,42 +17,42 @@ function validacaoCadastro() {
     console.log(`${nome} ${email} ${dia} ${mes} ${ano} ${senha} ${senha2} ${sobrenome}`)
 
     if (email == "") {
-        mensagem("email não pode estar vazio");
+        mensagem("Email não pode estar vazio");
         return;
     }
     if (email.indexOf(" ") >= 0) {
-        mensagem("nao use espaços no email ", nome.indexOf(" "));
+        mensagem("Nao use espaços no email ", nome.indexOf(" "));
         console.warn("espaco")
         return
     }
 
     if (nome == "") {
-        mensagem("nome não pode estar vazio");
+        mensagem("Nome não pode estar vazio");
         return;
     }
     if (nome.indexOf(" ") >= 0) {
-        mensagem("nao use espaços no nome ", nome.indexOf(" "));
+        mensagem("Nao use espaços no nome ", nome.indexOf(" "));
         return;
     }
     if (sobrenome == "") {
-        mensagem("nome não pode estar vazio");
+        mensagem("Nome não pode estar vazio");
         return;
     }
     if (email.indexOf(" ") >= 0) {
-        mensagem("nao use espaços no sobrenome");
+        mensagem("Nao use espaços no sobrenome");
         return;
     }
-    if (dia < 0 || dia > 31 || mes < 0 || mes > 31 || ano < 1870) {
-        mensagem("por favor insira uma data válida");
+    if (dia < 0 || dia > 31 || mes < 0 || mes > 31 || ano < 1900) {
+        mensagem("Por favor insira uma data válida");
         return;
     }
-    if (date.getFullYear() - ano <= 18) {
+    if (date.getFullYear() - ano <= 13) {
         console.log("sim1");
         if (mes >= date.getMonth()) {
             console.log("sim2");
             if (dia > date.getDate()) {
                 console.log("sim");
-                mensagem("apenas maiores de idade");
+                mensagem("Apenas maiores de idade");
                 return;
             }
         }
@@ -63,22 +63,23 @@ function validacaoCadastro() {
         return
     }
     if (senha == "") {
-        mensagem("senha não pode estar vazio");
+        mensagem("Senha não pode estar vazio");
         return;
     }
     if (senha2 == "") {
-        mensagem("senha não pode estar vazio");
+        mensagem("Senha não pode estar vazio");
         return;
     }
 
     if (senha2 != senha) {
-        mensagem("as duas senhas precisam ser iguais");
+        mensagem("As duas senhas precisam ser iguais");
         return;
     }
 
     cadastrar();
 
 }
+var ref = firebase.database().ref("Usuarios");
 
 document.addEventListener("DOMContentLoaded", function() {
     console.log(date);
@@ -90,7 +91,18 @@ function cadastrar() {
 
     firebase.auth().createUserWithEmailAndPassword(email, senha).then(user => {
         console.log("usuario", user);
-        alert("Usuario cadastrado e logado");
+
+        var infos = {
+            Nome: document.getElementById("Input_nome").value,
+            sobrenome: document.getElementById("Input_sobrenome").value,
+            data_nascimento: {
+                dia: document.getElementById("Input_dia").value,
+                mes: document.getElementById("Input_mes").value,
+                ano: document.getElementById("Input_ano").value,
+            }
+        };
+
+        ref.child(`${user.user.uid}`).update(infos).then(() => { console.log("allright") });
 
     }).catch(error => {
         console.log("credenciais invalidas: " + error);
