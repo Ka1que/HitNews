@@ -68,7 +68,7 @@ function carregarNoticia(infoNot) {
 
     let linkAutor = document.createElement("a");
     linkAutor.classList.add("Container_autor");
-    linkAutor.href = "usu_perfil.html";
+    linkAutor.href = "perfil.html?" + infoNot.autor.id;
 
     let imagem_autor = document.createElement("img");
     imagem_autor.classList.add("Autor_img");
