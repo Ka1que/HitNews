@@ -54,13 +54,14 @@ var container_conteudo = document.getElementById("Container_conteudo");
 /**
  * Coloca uma noticia dentro do container
  * @param {Object} infoNot Objeto da noticia em formato de Json
+ * @param {Object} idNoticia chave da noticia
  */
-function colocarNoticiaContainer(infoNot) {
+function colocarNoticiaContainer(infoNot, idNoticia) {
     let container_noticia = document.createElement("div"); //cria div que vai conter a noticia
     container_noticia.classList.add("Container_noticia"); //diz que a classe da div é Container_noticia para o css
 
     let linkNot = document.createElement("a"); //cria tag a para depois adicionar o link da página da noticia
-    linkNot.href = "./noticia.html"; //adiciona o link da página da notica para a tag "a" criada
+    linkNot.href = "./noticia.html?" + idNoticia; //adiciona o link da página da notica para a tag "a" criada
 
     let titulo_noticia = document.createElement("h1"); //cria a tag do titulo da notícia
     titulo_noticia.classList.add("Noticia_titulo"); //diz que a classe do h1 é Noticia_titulo
@@ -77,7 +78,7 @@ function colocarNoticiaContainer(infoNot) {
 
     let linkAutor = document.createElement("a");
     linkAutor.classList.add("Container_autor");
-    linkAutor.href = "usu_perfil.html";
+    linkAutor.href = "perfil.html?" + infoNot.autor.id;
 
     let imagem_autor = document.createElement("img");
     imagem_autor.classList.add("Autor_img");
@@ -200,7 +201,8 @@ document.addEventListener("DOMContentLoaded", function() {
      * pega as noticias do nó de noticias no banco de dados e adiciona no site
      */
     firebase.database().ref("noticias").on("child_added", snapshot => {
-        colocarNoticiaContainer(snapshot.val());
+        
+        colocarNoticiaContainer(snapshot.val(),snapshot.key);
     });
 
 })

@@ -1,11 +1,22 @@
 
 var container = document.getElementsByClassName("Container_conteudo")[0];
 
+function getNoticiaId()
+{
+    let url = window.location.href;
+    let id = url.substring(url.indexOf("?")+1);
+    return id;
+
+}
+
 /**
  * Função que é ativada quando o DOM pode ser executado
  */
 document.addEventListener("DOMContentLoaded", function() {
 
+    
+    /**
+    
     //TODO pegar noticia do banco e fazer noticias terem sua própria página
     var noticia = {
         "autor": {
@@ -20,7 +31,16 @@ document.addEventListener("DOMContentLoaded", function() {
         "views": 0,
         "data": "30/10/2020"
     }
-    carregarNoticia(noticia);
+    * 
+     */
+    firebase.database().ref("noticias").child(getNoticiaId()).once("value").then((result) => {
+       
+        carregarNoticia(result.val());
+    
+       }).catch((err) => {
+           
+       });;
+
 
 });
 
