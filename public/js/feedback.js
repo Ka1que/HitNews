@@ -15,11 +15,12 @@ function validarFeedback()
     
         var feedback = {
             email: email_feedback.value,
-            mensagem: document.getElementById("Text_opniao");.value,
+            mensagem: document.getElementById("Text_opniao").value,
             data: dataFormatada
         }
         
-        firebase.database().ref().child("feedback").push(feedback).then(() =>{
+        firebase.database().ref().child("feedbacks").push(feedback).then(() =>{
+            
             document.getElementById("mensagem").innerHTML = "Agradecemos o Feedback!";
         }).catch((erro) =>{
             document.getElementById("mensagem").innerHTML = "Erro ao enviar feedback!";
