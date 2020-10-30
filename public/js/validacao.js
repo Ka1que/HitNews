@@ -91,8 +91,9 @@ function cadastrar() {
     firebase.auth().createUserWithEmailAndPassword(email, senha).then(user => {
         console.log("usuario", user);
         alert("Usuario cadastrado e logado");
+
     }).catch(error => {
         console.log("credenciais invalidas: " + error);
-        mensagem("credenciais inválidas")
+        mensagem("credenciais inválidas");
     });
 };
