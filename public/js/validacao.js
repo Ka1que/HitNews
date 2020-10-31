@@ -157,8 +157,7 @@ function logar() {
     firebase.auth().signInWithEmailAndPassword(email, senha).then(snapshot => {
         console.log("logado com usuario: ", snapshot.user.uid);
         localStorage.setItem("uid", (snapshot.user.uid + ""));
-        alert("POHA")
-        window.location.href = "/perfil.html?" + String(snapshot.user.uid);
+        window.location.href = "./perfil.html?" + String(snapshot.user.uid);
     }).catch(err => {
         console.log("deu um erro: ", err)
     });

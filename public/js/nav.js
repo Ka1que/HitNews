@@ -54,11 +54,12 @@ firebase.auth().onAuthStateChanged(function(user) {
 });
 
 document.getElementById("container_usuario_link").addEventListener("click", () => {
-    alert("funcou");
+    openNav();
 });
 
 function deslogar() {
     firebase.auth().signOut().then(() => {
         console.log("deslogado");
     });
+    window.location.reload();
 }
