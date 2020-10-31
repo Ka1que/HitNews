@@ -71,6 +71,7 @@
         font-size: 25px;
         font: serif;
         position: absolute;
+        display: none;
         left: 90%;
         top: 25px;
     }
@@ -85,15 +86,16 @@
     #container_usuario_link {
         position: absolute;
         left: 90%;
-        top: -500px;
+        top: 10px;
         background-color: white;
         height: 40px;
         border-radius: 40px;
         padding: 10px;
         width: 40px;
         align-items: center;
-        display: flex;
+        display: none;
         justify-content: center;
+        cursor: pointer;
     }
     
     @media (max-width: 900px) {
@@ -126,6 +128,7 @@
     
     .search-box:hover>.search-btn {
         transition: 0.01s;
+        background-color: #c0c0c0;
     }
     
     .search-btn {

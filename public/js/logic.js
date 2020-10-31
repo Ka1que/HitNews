@@ -201,8 +201,21 @@ document.addEventListener("DOMContentLoaded", function() {
      * pega as noticias do nó de noticias no banco de dados e adiciona no site
      */
     firebase.database().ref("noticias").on("child_added", snapshot => {
-        
-        colocarNoticiaContainer(snapshot.val(),snapshot.key);
+
+        colocarNoticiaContainer(snapshot.val(), snapshot.key);
     });
 
-})
+});
+
+window.addEventListener("scroll", () => {
+    if (window.scrollY > 700) {
+        GerarNoticia();
+    }
+});
+
+function GerarNoticia() {
+    firebase.database().ref("noticias").on("child_added", snapshot => {
+
+        colocarNoticiaContainer(snapshot.val(), snapshot.key);
+    });
+}

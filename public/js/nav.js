@@ -1,4 +1,10 @@
 /**
+ *  Declaração de variaveis globais 
+ */
+
+let uid = null;
+
+/**
  * ABRIR MENU LATERAL
  */
 function openNav() {
@@ -30,4 +36,29 @@ function goBack() {
     };
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
-})
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    uid = localStorage.getItem("uid");
+    console.log(`id do usuario logado: ${uid}`);
+});
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        document.getElementById("container_usuario_link").style.display = "flex";
+        console.log(user);
+    } else {
+        document.getElementById("Login_link").style.display = "flex";
+        console.log("anithing is here");
+    }
+});
+
+document.getElementById("container_usuario_link").addEventListener("click", () => {
+    alert("funcou");
+});
+
+function deslogar() {
+    firebase.auth().signOut().then(() => {
+        console.log("deslogado");
+    });
+}
