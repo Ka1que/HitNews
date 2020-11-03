@@ -1,10 +1,9 @@
-
 var container = document.getElementsByClassName("Container_conteudo")[0];
+var refNoticia = firebase.database().ref("noticias");
 
-function getNoticiaId()
-{
+function getNoticiaId() {
     let url = window.location.href;
-    let id = url.substring(url.indexOf("?")+1);
+    let id = url.substring(url.indexOf("?") + 1);
     return id;
 
 }
@@ -14,7 +13,7 @@ function getNoticiaId()
  */
 document.addEventListener("DOMContentLoaded", function() {
 
-    
+
     /**
     
     //TODO pegar noticia do banco e fazer noticias terem sua própria página
@@ -34,12 +33,11 @@ document.addEventListener("DOMContentLoaded", function() {
     * 
      */
     firebase.database().ref("noticias").child(getNoticiaId()).once("value").then((result) => {
-       
+
         carregarNoticia(result.val());
-    
-       }).catch((err) => {
-           
-       });;
+    }).catch((err) => {
+
+    });;
 
 
 });
@@ -130,7 +128,8 @@ function carregarNoticia(infoNot) {
      */
     let contador_views = document.createElement("h3");
     contador_views.classList.add("Num_view");
-    contador_views.innerHTML = infoNot.views;
+    contador_views.innerHTML = infoNot.views + 1;
+    addView(infoNot.views);
     container_views.appendChild(contador_views);
 
     let container_likes = document.createElement("div"); //container para os likes
@@ -161,6 +160,10 @@ function carregarNoticia(infoNot) {
     contador_likes.classList.add("Num_like");
     contador_likes.innerHTML = infoNot.curtidas;
     container_likes.appendChild(contador_likes);
+
+    container_likes.addEventListener("click", () => {
+        addLike();
+    });
 
     let container_conteudo_noticia = document.createElement("div");
     container_conteudo_noticia.id = "container_conteudo_noticia"
@@ -193,4 +196,14 @@ function carregarNoticia(infoNot) {
     container_noticia.appendChild(rodape_noticia);
     container_noticia.appendChild(container_conteudo_noticia);
     container.appendChild(container_noticia);
+}
+
+function addView(num_views) {
+    const id = getNoticiaId();
+    refNoticia.child(id).update({ views: num_views + 1 }).then(() => {});
+}
+
+function addLike(num_likes) {
+    const id = getNoticiaId();
+    refNoticia.child(id).update({ curtidas: num_likes + 1 }).then(() => {});
 }

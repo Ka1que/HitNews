@@ -3,6 +3,17 @@
  */
 
 let uid = null;
+var infos_usu;
+
+//metodos get e set para algumas variaveis
+
+function getInfosUsu() {
+    return infos_usu;
+}
+
+function setInfosUsu(usu) {
+    infos_usu = usu;
+}
 
 /**
  * ABRIR MENU LATERAL
@@ -42,24 +53,37 @@ document.addEventListener("DOMContentLoaded", () => {
     uid = localStorage.getItem("uid");
     console.log(`id do usuario logado: ${uid}`);
 });
-
+//verifica se tem um usuario logado
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         document.getElementById("container_usuario_link").style.display = "flex";
-        console.log(user);
+        //document.getElementById("opcoes_usu").style.display = "block";
+        setInfosUsu(user);
+        habilitarLinks(user.uid);
     } else {
         document.getElementById("Login_link").style.display = "flex";
         console.log("anithing is here");
+
     }
 });
-
+//função para abrir o menu lateral para usuarios que já estiverem logados
 document.getElementById("container_usuario_link").addEventListener("click", () => {
     openNav();
 });
-
+//desconectar 
 function deslogar() {
     firebase.auth().signOut().then(() => {
         console.log("deslogado");
     });
     window.location.reload();
+}
+// habilita algumas funções para usuarios logados
+function habilitarLinks(uid) {
+    document.getElementById("link_perfil").addEventListener("click", () => {
+        window.location.href = "./perfil.html?" + String(uid)
+    });
+
+    document.getElementById("link_escreverNoticia").addEventListener("click", () => {
+        window.location.href = "./escreverNoticia.html?"
+    });
 }

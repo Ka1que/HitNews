@@ -7,6 +7,8 @@
 
     <link rel="stylesheet" type="text/css" href="./css/style.css">
     <link rel="icon" href="LogoGuia.png">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+
 
 </head>
 
@@ -39,11 +41,6 @@
             </a>
         </div>
 
-
-        <a class="acesso">
-            <i class="fas fa-user-circle fa-4x "></i>
-        </a>
-
         <a href="./login.html?#" id="Login_link">Login</a>
 
         <div id="container_usuario_link">
@@ -62,82 +59,48 @@
         <a href="?#">Pagina Inicial</a>
         <a href="feedback.html?#">Deixe seu Feedback</a>
         <a href="#">sobre Nós</a>
-        <br />
-        <div id="opcoes_usu">
-            <h2>opções do usuario</h2>
-            <a id="link_perfil" href="#">Perfil</a>
-            <div id="svg_edit" hidden>
-                <svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="74.3982" height="274.565" transform="matrix(0.707353 0.706861 -0.707353 0.706861 247.374 0)" fill="black"/>
-                    <path d="M30.0719 269.949L53.8355 194.152L105.921 246.202L30.0719 269.949Z" fill="black"/>
-                    <path d="M31.5383 267C29.471 276.149 32.2471 292.145 59.8904 282.937" stroke="black" stroke-width="4"/>
-                    <path d="M59 283.196C68.4507 277.884 104.54 261.061 109.502 292.935" stroke="black" stroke-width="4"/>
-                </svg>
-            </div>
-
-            <a id="link_escreverNoticia" href="#">Escrever uma noticia</a>
-
-            <div id="container_svg_exit">
-                <svg id="svg_exit" width="263" height="300" viewBox="0 0 263 300" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <rect width="200" height="300" rx="30" fill="black"/>
-                    <rect x="10" y="10" width="180" height="280" rx="30" fill="white"/>
-                    <rect y="266" width="200" height="34" fill="white"/>
-                    <path d="M90 150L165 106.699V193.301L90 150Z" fill="black"/>
-                    <rect x="162" y="142" width="101" height="16" fill="black"/>
-                </svg>
-
-
-                <a id="txt_deslogar" href="#" onclick="deslogar()">deslogar</a>
-            </div>
-        </div>
-    </div>
-    <div id="Container_conteudo">
-
-        <!--
-        <div class="Container_noticia" href="./noticia.html" name="ID_Noticia">
-            <a href="./noticia.html">
-                <h1 class="Noticia_titulo">Uchiha Madara, Charingan que não acaba</h1>
-
-                <img src=".\madara.jpg" class="Noticia_img">
-            </a>
-            <div class="Container_rodape">
-                <a class="Container_autor" href="usu_perfil.html">
-                    <img src=".\naruto.jpg" class="Autor_img">
-                    <h3 class="Autor_nome">Naruto</h3>
-                </a>
-
-
-
-                <div class="Container_view">
-                    <svg class="Svg_view" width="44" height="26" viewBox="0 0 44 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.4763 17.7648C11.4763 17.7648 16.0398 26.7575 26.4662 23.1436C26.9805 22.9653 27.4869 22.7509 27.9437 22.4549C29.1808 21.6533 31.8166 19.5127 34.0199 14.804M9.78052 2.60551L12.0748 8.17182" stroke="black" stroke-width="4"/>
-                            <path d="M21.7506 0V5.56632" stroke="black" stroke-width="4"/>
-                            <path d="M32.9227 3.19767L31.4264 7.69809" stroke="black" stroke-width="4"/>
-                            <path d="M1.99997 21.0808C22.8478 -2.13187 42 21.0808 42 21.0808" stroke="black" stroke-width="4"/>
-                        </svg>
-                    <h3 class="Num_view">877</h3>
-                </div>
-
-                <div class="Container_like">
-                    <svg class="Svg_like" width="29" height="30" viewBox="0 0 29 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5.26171 12.4511C2.68928 10.315 2.9884 7.62957 2.9884 7.62957C4.24475 2.07572 8.73148 2.07572 8.73148 2.07572C11.7227 1.34334 15.2523 6.16482 15.2523 6.16482C15.2523 6.16482 17.2265 1.52644 21.7133 2.07572C26.2 2.625 26.9778 5.9207 26.9778 7.62957C26.9778 9.33845 26.9179 10.315 25.4223 12.4511C23.9267 14.5871 15.2523 26 15.2523 26L8.73148 17.5166" stroke="black" stroke-width="4"/>
-                        </svg>
-
-                    <h3 class="Num_like">987</h3>
-                </div>
-            </div>
-        </div>
-    -->
     </div>
 
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <div id="area" class="editor_texto">
+
+        <div class="container">
+            <h1>WYSIWYG - EDITOR</h1>
+            <textarea name="editor" id="editor" cols="30" rows="10"></textarea>
+        </div>
+
+        <div id="Text_input" style="width: 50%;text-align: center;">
+            <input type="text" id="Input_titulo" placeholder=" " required>
+            <label id="Text_titulo">O titulo da noticia</label>
+        </div>
+
+        <div id="Imagem_input_container" style="width: 50%;text-align: center;">
+            <label id="Imagem_noticia">Escolha uma imagem para a noticia: </label>
+            <input type="file" name="arquivos" id="Input_imagem" accept="image/png, image/jpeg" />
+            <img id="preview_img" src="" />
+        </div>
+
+        <div id="Text_input" style="width: 50%;text-align: center;">
+            <input type="text" id="Input_fonte" placeholder=" " required>
+            <label id="Text_Fonte">As fontes da noticia(bibliografia)</label>
+        </div>
+
+        <div class="actions">
+            <button onclick="editor.save();" id="save">Salvar</button>
+        </div>
+
+
+
+    </div>
+
+
     <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
 
     <!-- TODO: Add SDKs for Firebase products that you want to use
             https://firebase.google.com/docs/web/setup#available-libraries -->
     <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
-
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-storage.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
     <script>
         // Your web app's Firebase configuration
@@ -155,8 +118,12 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
     </script>
-    <script src="./js/logic.js"></script>
+    <script src="./js/editor.js"></script>
     <script src="./js/nav.js"></script>
+
+    <script>
+        var editor = new CDEditor('#editor');
+    </script>
 </body>
 
 </html>

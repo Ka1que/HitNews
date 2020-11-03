@@ -206,11 +206,11 @@ document.addEventListener("DOMContentLoaded", function() {
     });
 
 });
-let scrollCondition = 2100;
+let scrollCondition = 2800;
 window.addEventListener("scroll", () => {
     if (window.scrollY > scrollCondition) {
         GerarNoticia();
-        scrollCondition += 2100;
+        scrollCondition += 3000;
     }
 });
 
