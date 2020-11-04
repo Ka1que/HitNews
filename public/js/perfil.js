@@ -193,7 +193,12 @@ document.addEventListener("DOMContentLoaded", function() {
           };*/
           firebase.database().ref("Usuarios").child(result.key).child("noticias").once("value").then(snapshot =>{
             snapshot.forEach( valor =>{
-                carregarNoticias(valor,result,valor.key);
+
+                firebase.database().ref("noticias").child(valor.key).once("value").then(noticia =>{
+
+                    carregarNoticias(noticia.val(),result.val(),noticia.key);
+                });
+                
             });
             
 
