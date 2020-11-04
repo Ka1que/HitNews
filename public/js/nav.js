@@ -53,13 +53,15 @@ document.addEventListener("DOMContentLoaded", () => {
     uid = localStorage.getItem("uid");
     console.log(`id do usuario logado: ${uid}`);
 });
+
 //verifica se tem um usuario logado
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         document.getElementById("container_usuario_link").style.display = "flex";
-        //document.getElementById("opcoes_usu").style.display = "block";
+        document.getElementById("opcoes_usu").style.display = "block";
         setInfosUsu(user);
         habilitarLinks(user.uid);
+        console.warn(" hellowow " + user.id);
     } else {
         document.getElementById("Login_link").style.display = "flex";
         console.log("anithing is here");

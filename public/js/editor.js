@@ -132,7 +132,7 @@ var CDEditor = function(textarea) {
             new ComponentButton('strikethrough', 'strikethrough'),
             new Space(),
             //fontColor,
-            new Space(),
+            //new Space(),
             highlighter,
             new Space(),
             new ComponentButton('justifyleft', 'align-left'),
@@ -180,13 +180,32 @@ var CDEditor = function(textarea) {
     init();
 };
 
+let infosAutor;
+var usuOnline;
+
+firebase.auth().onAuthStateChanged(function(user) {
+    console.log(user);
+    usuOnline = user;
+});
+
 function salvarNoticia(conteudo_noticia) {
+    let aut_img;
+    let aut_nome;
+
+    firebase.database().ref("/Usuarios/" + usuOnline.uid + "/").once("value").then(snapshot => {
+        aut_nome = snapshot.val().nome;
+        aut_img = snapshot.val().img_perfil;
+
+        console.log("oq importas  " + aut_nome + " " + aut_img);
+    });
+
+    console.log("oq importa " + aut_nome + " " + aut_img);
 
     var noticia = {
         "autor": {
-            "uid": infos_usu.uid,
-            "img_autor": ref.child("Usuarios/" + infos_usu.uid).on("value", snapshot => { return snapshot.img_perfil }),
-            "nome": ref.child("Usuarios/" + infos_usu.uid).on("value", snapshot => { return snapshot.nome })
+            "uid": usuOnline.uid,
+            "img_autor": aut_img,
+            "nome": aut_nome,
         },
         "conteudo": conteudo_noticia,
         "curtidas": 0,
@@ -196,7 +215,7 @@ function salvarNoticia(conteudo_noticia) {
         "views": 0
     }
 
-    console.log(infos_usu);
+    console.log("infos noticia : " + noticia.autor.aut_nome);
     //ref.push(conteudo).then((noticia) => { console.log("upado com sucesso ", noticia) });
 
     firebase.database().ref("noticias").push(noticia).then(snapshot => {

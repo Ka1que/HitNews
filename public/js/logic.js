@@ -78,7 +78,9 @@ function colocarNoticiaContainer(infoNot, idNoticia) {
 
     let linkAutor = document.createElement("a");
     linkAutor.classList.add("Container_autor");
-    linkAutor.href = "perfil.html?" + infoNot.autor.id;
+    console.log(infoNot)
+    console.log(infoNot.autor.uid);
+    linkAutor.href = "perfil.html?" + infoNot.autor.uid;
 
     let imagem_autor = document.createElement("img");
     imagem_autor.classList.add("Autor_img");
@@ -200,12 +202,15 @@ document.addEventListener("DOMContentLoaded", function() {
     /**
      * pega as noticias do nó de noticias no banco de dados e adiciona no site
      */
-    firebase.database().ref("noticias").on("child_added", snapshot => {
-
-        colocarNoticiaContainer(snapshot.val(), snapshot.key);
+    firebase.database().ref("noticias").on("value", (snapshot) => {
+        console.warn("noticia dom loaded" + snapshot);
+        snapshot.forEach((value) => {
+            colocarNoticiaContainer(value.val(), value.key);
+        });
     });
 
 });
+
 let scrollCondition = 2800;
 window.addEventListener("scroll", () => {
     if (window.scrollY > scrollCondition) {
@@ -215,8 +220,9 @@ window.addEventListener("scroll", () => {
 });
 
 function GerarNoticia() {
-    firebase.database().ref("noticias").on("child_added", snapshot => {
-
-        colocarNoticiaContainer(snapshot.val(), snapshot.key);
+    firebase.database().ref("noticias").once("value", snapshot => {
+        snapshot.forEach((value) => {
+            colocarNoticiaContainer(value.val(), value.key);
+        });
     });
 }

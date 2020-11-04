@@ -33,11 +33,11 @@ document.addEventListener("DOMContentLoaded", function() {
     * 
      */
     firebase.database().ref("noticias").child(getNoticiaId()).once("value").then((result) => {
-
+        console.log("noticia q veio do BD :" + result.val().titulo)
         carregarNoticia(result.val());
     }).catch((err) => {
-
-    });;
+        console.log(err);
+    });
 
 
 });
