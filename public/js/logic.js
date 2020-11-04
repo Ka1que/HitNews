@@ -226,10 +226,14 @@ window.addEventListener("scroll", () => {
 });
 
 function GerarNoticia() {
-    firebase.database().ref("noticias").once("value", snapshot => {
+    firebase.database().ref("noticias").on("value", (snapshot) => {
+        console.warn("noticia dom loaded" + snapshot);
         snapshot.forEach((value) => {
-
-            colocarNoticiaContainer(value.val(), value.key);
+            firebase.database().ref("Usuarios").child(value.val().autor_uid).once('value').then(snapshot => {
+                //console.log("valor: ", snapshot.val());
+                colocarNoticiaContainer(value.val(), value.key, snapshot.val());
+            });
+            //colocarNoticiaContainer(value.val(), value.key,);
         });
     });
 }

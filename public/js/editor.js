@@ -208,7 +208,9 @@ function salvarNoticia(conteudo_noticia) {
                     "titulo": document.getElementById("Input_titulo").value,
                     "views": 0
                 }
-                firebase.database().ref("noticias").push(noticia).then(snapshot => {});
+                firebase.database().ref("noticias").push(noticia).then(snapshot => {
+
+                });
             })
         });
     } else {
