@@ -161,5 +161,6 @@ function logar() {
         //window.location.href = "./perfil.html?" + String(snapshot.user.uid);
     }).catch(err => {
         console.log("deu um erro: ", err);
+        document.getElementById("mensagem").innerHTML = "Erro no login, Verifique Email/Senha"
     });
 }

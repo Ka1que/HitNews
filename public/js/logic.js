@@ -54,9 +54,10 @@ var container_conteudo = document.getElementById("Container_conteudo");
 /**
  * Coloca uma noticia dentro do container
  * @param {Object} infoNot Objeto da noticia em formato de Json
+ * @param {Object} infoAutor Objeto que carrega informações do autor
  * @param {Object} idNoticia chave da noticia
  */
-function colocarNoticiaContainer(infoNot, idNoticia) {
+function colocarNoticiaContainer(infoNot, idNoticia,infoAutor) {
     let container_noticia = document.createElement("div"); //cria div que vai conter a noticia
     container_noticia.classList.add("Container_noticia"); //diz que a classe da div é Container_noticia para o css
 
@@ -78,18 +79,18 @@ function colocarNoticiaContainer(infoNot, idNoticia) {
 
     let linkAutor = document.createElement("a");
     linkAutor.classList.add("Container_autor");
-    console.log(infoNot)
-    console.log(infoNot.autor.uid);
-    linkAutor.href = "perfil.html?" + infoNot.autor.uid;
+    //console.log(infoNot)
+    //console.log(infoNot.autor_uid);
+    linkAutor.href = "perfil.html?" + infoNot.autor_uid;
 
     let imagem_autor = document.createElement("img");
     imagem_autor.classList.add("Autor_img");
-    imagem_autor.src = infoNot.autor.imagem;
+    imagem_autor.src = infoAutor.img_perfil;
     linkAutor.appendChild(imagem_autor);
 
     let nome_autor = document.createElement("h3");
     nome_autor.classList.add("Autor_nome");
-    nome_autor.innerHTML = infoNot.autor.nome;
+    nome_autor.innerHTML = infoAutor.nome;
     linkAutor.appendChild(nome_autor);
 
 
@@ -205,7 +206,11 @@ document.addEventListener("DOMContentLoaded", function() {
     firebase.database().ref("noticias").on("value", (snapshot) => {
         console.warn("noticia dom loaded" + snapshot);
         snapshot.forEach((value) => {
-            colocarNoticiaContainer(value.val(), value.key);
+            firebase.database().ref("Usuarios").child(value.val().autor_uid).once('value').then(snapshot => {
+                //console.log("valor: ", snapshot.val());
+                colocarNoticiaContainer(value.val(),value.key,snapshot.val());
+            });
+            //colocarNoticiaContainer(value.val(), value.key,);
         });
     });
 
@@ -222,6 +227,7 @@ window.addEventListener("scroll", () => {
 function GerarNoticia() {
     firebase.database().ref("noticias").once("value", snapshot => {
         snapshot.forEach((value) => {
+            
             colocarNoticiaContainer(value.val(), value.key);
         });
     });

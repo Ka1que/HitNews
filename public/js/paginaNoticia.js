@@ -34,7 +34,12 @@ document.addEventListener("DOMContentLoaded", function() {
      */
     firebase.database().ref("noticias").child(getNoticiaId()).once("value").then((result) => {
         console.log("noticia q veio do BD :" + result.val().titulo)
-        carregarNoticia(result.val());
+        firebase.database().ref("Usuarios").child(result.val().autor_uid).once('value').then(snapshot => {
+            //console.log("valor: ", snapshot.val());
+            //colocarNoticiaContainer(value.val(),value.key,snapshot.val());
+            carregarNoticia(result.val(),snapshot.val());
+        });
+        
     }).catch((err) => {
         console.log(err);
     });
@@ -47,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function() {
  * Coloca uma noticia dentro do container
  * @param {Object} infoNot Objeto da noticia em formato de Json
  */
-function carregarNoticia(infoNot) {
+function carregarNoticia(infoNot,infoAutor) {
     let container_noticia = document.createElement("div");
     container_noticia.classList.add("Container_noticia");
 
@@ -66,16 +71,16 @@ function carregarNoticia(infoNot) {
 
     let linkAutor = document.createElement("a");
     linkAutor.classList.add("Container_autor");
-    linkAutor.href = "perfil.html?" + infoNot.autor.id;
+    linkAutor.href = "perfil.html?" + infoNot.autor_uid;
 
     let imagem_autor = document.createElement("img");
     imagem_autor.classList.add("Autor_img");
-    imagem_autor.src = infoNot.autor.imagem;
+    imagem_autor.src = infoAutor.img_perfil;
     linkAutor.appendChild(imagem_autor);
 
     let nome_autor = document.createElement("h3");
     nome_autor.classList.add("Autor_nome");
-    nome_autor.innerHTML = infoNot.autor.nome;
+    nome_autor.innerHTML = infoAutor.nome;
     linkAutor.appendChild(nome_autor);
 
 
@@ -134,7 +139,7 @@ function carregarNoticia(infoNot) {
 
     let container_likes = document.createElement("div"); //container para os likes
     container_likes.classList.add("Container_like");
-
+    
     /**
      * criando o elemento svg dos likes, é o mesmo processo de antes, a única diferença é que os atributos são passadps por um SetAttribute
      */
@@ -144,6 +149,7 @@ function carregarNoticia(infoNot) {
     svg_like.setAttribute("height", "30");
     svg_like.setAttribute("viewBox", "0 0 29 30");
     svg_like.setAttribute("fill", "none");
+    
 
     let path_like = document.createElementNS("http://www.w3.org/2000/svg", "path");
     path_like.setAttribute("d", "M5.26171 12.4511C2.68928 10.315 2.9884 7.62957 2.9884 7.62957C4.24475 2.07572 8.73148 2.07572 8.73148 2.07572C11.7227 1.34334 15.2523 6.16482 15.2523 6.16482C15.2523 6.16482 17.2265 1.52644 21.7133 2.07572C26.2 2.625 26.9778 5.9207 26.9778 7.62957C26.9778 9.33845 26.9179 10.315 25.4223 12.4511C23.9267 14.5871 15.2523 26 15.2523 26L8.73148 17.5166");
@@ -152,6 +158,7 @@ function carregarNoticia(infoNot) {
     svg_like.appendChild(path_like);
 
     container_likes.appendChild(svg_like);
+    container_likes.addEventListener("click", ()=>{contador_likes.style.color = "#ff0000"; path_like.setAttribute("stroke", "red"); addLike(infoNot.curtidas);});
 
     /**
      * colocando numero de curtidas no container
@@ -159,6 +166,7 @@ function carregarNoticia(infoNot) {
     let contador_likes = document.createElement("h3");
     contador_likes.classList.add("Num_like");
     contador_likes.innerHTML = infoNot.curtidas;
+    contador_likes.id = "Num_like";
     container_likes.appendChild(contador_likes);
 
     container_likes.addEventListener("click", () => {
@@ -206,4 +214,6 @@ function addView(num_views) {
 function addLike(num_likes) {
     const id = getNoticiaId();
     refNoticia.child(id).update({ curtidas: num_likes + 1 }).then(() => {});
+    document.getElementById("Num_like").innerHTML = num_likes + 1;
+    
 }
