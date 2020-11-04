@@ -180,17 +180,17 @@ var CDEditor = function(textarea) {
     init();
 };
 
-let infosAutor;
+var infosAutor;
 var usuOnline;
 
 firebase.auth().onAuthStateChanged(function(user) {
-    console.log(user);
+    console.log(user.uid);
     usuOnline = user;
 });
 
 function salvarNoticia(conteudo_noticia) {
-    let aut_img;
-    let aut_nome;
+    var aut_img;
+    var aut_nome;
 
     firebase.database().ref("/Usuarios/" + usuOnline.uid + "/").once("value").then(snapshot => {
         aut_nome = snapshot.val().nome;
