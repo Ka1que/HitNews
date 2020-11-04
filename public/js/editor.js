@@ -42,7 +42,7 @@ var CDEditor = function(textarea) {
 
     this.save = function() {
         textareaSource.value = CDEditorIframe.document.body.innerHTML;
-        var conteudo = { conteudo: CDEditorIframe.document.body.innerHTML };
+        var conteudo = CDEditorIframe.document.body.innerHTML;
 
 
         salvarNoticia(conteudo);
@@ -211,6 +211,7 @@ function salvarNoticia(conteudo_noticia) {
                 firebase.database().ref("noticias").push(noticia).then(snapshot => {});
             })
         });
+    } else {
 
         var noticia = {
             "autor_uid": usuOnline,
@@ -225,8 +226,8 @@ function salvarNoticia(conteudo_noticia) {
         //ref.push(conteudo).then((noticia) => { console.log("upado com sucesso ", noticia) });
 
         firebase.database().ref("noticias").push(noticia).then(snapshot => {});
-    }
 
+    }
     // firebase.database().ref("/Usuarios/" + usuOnline.uid + "/").on("value", snapshot => {
     //     console.log("not " + snapshot.val().nome);
     //     aut_nome = snapshot.val().nome;
