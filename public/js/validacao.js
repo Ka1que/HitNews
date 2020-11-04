@@ -151,7 +151,7 @@ function cadastrar() {
 };
 
 function logar() {
-    var email = document.getElementById("Input_login").value;;
+    var email = document.getElementById("Input_login").value;
     var senha = document.getElementById("Input_senha").value;
 
     firebase.auth().signInWithEmailAndPassword(email, senha).then(snapshot => {
