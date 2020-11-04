@@ -246,6 +246,7 @@
     .Container_like {
         vertical-align: middle;
         display: block;
+        cursor: pointer;
         float: right;
         margin-top: 25px;
         margin-right: 16%;

@@ -1,10 +1,11 @@
 let ref = firebase.database().ref();
+var imgNoticiaId = firebase.database().ref().push().key;
 
 //faz upload da img que o usuario escolheu e fornece uma url para usar a imagem
 function getUrlImagemNoticia() {
     let url_img;
     var img_noticia = document.getElementById("Input_imagem").files[0];
-    if (!imgNoticiaId) {
+    if (imgNoticiaId) {
         firebase.storage().ref("img_noticias/" + imgNoticiaId).put(img_noticia).then(function(snapshot) {
             console.log('Uploaded ', snapshot);
             firebase.storage().ref("img_noticias/" + imgNoticiaId).getDownloadURL().then(url => {
@@ -12,7 +13,7 @@ function getUrlImagemNoticia() {
                 url_img = url;
             })
         });
-        return url_img;
+        return url_img + "";
     } else {
         return "";
     }
@@ -184,44 +185,59 @@ var infosAutor;
 var usuOnline;
 
 firebase.auth().onAuthStateChanged(function(user) {
-    console.log(user.uid);
-    usuOnline = user;
+    //console.log(user.uid);
+    usuOnline = user.uid;
 });
 
 function salvarNoticia(conteudo_noticia) {
-    var aut_img;
-    var aut_nome;
 
-    firebase.database().ref("/Usuarios/" + usuOnline.uid + "/").once("value").then(snapshot => {
-        aut_nome = snapshot.val().nome;
-        aut_img = snapshot.val().img_perfil;
+    let url_img;
+    var img_noticia = document.getElementById("Input_imagem").files[0];
+    if (imgNoticiaId) {
+        firebase.storage().ref("img_noticias/" + imgNoticiaId).put(img_noticia).then(function(snapshot) {
+            console.log('Uploaded ', snapshot);
+            firebase.storage().ref("img_noticias/" + imgNoticiaId).getDownloadURL().then(url => {
+                console.log("link pra download: ", url);
+                url_img = url;
+                var noticia = {
+                    "autor_uid": usuOnline,
+                    "conteudo": conteudo_noticia,
+                    "curtidas": 0,
+                    "fonte": document.getElementById("Input_fonte").value,
+                    "imagem": url,
+                    "titulo": document.getElementById("Input_titulo").value,
+                    "views": 0
+                }
+                firebase.database().ref("noticias").push(noticia).then(snapshot => {});
+            })
+        });
 
-        console.log("oq importas  " + aut_nome + " " + aut_img);
-    });
+        var noticia = {
+            "autor_uid": usuOnline,
+            "conteudo": conteudo_noticia,
+            "curtidas": 0,
+            "fonte": document.getElementById("Input_fonte").value,
+            "imagem": "",
+            "titulo": document.getElementById("Input_titulo").value,
+            "views": 0
+        }
 
-    console.log("oq importa " + aut_nome + " " + aut_img);
+        //ref.push(conteudo).then((noticia) => { console.log("upado com sucesso ", noticia) });
 
-    var noticia = {
-        "autor": {
-            "uid": usuOnline.uid,
-            "img_autor": aut_img,
-            "nome": aut_nome,
-        },
-        "conteudo": conteudo_noticia,
-        "curtidas": 0,
-        "fonte": document.getElementById("Input_fonte").value,
-        "imagem": getUrlImagemNoticia(),
-        "titulo": document.getElementById("Input_titulo").value,
-        "views": 0
+        firebase.database().ref("noticias").push(noticia).then(snapshot => {});
     }
 
-    console.log("infos noticia : " + noticia.autor.aut_nome);
-    //ref.push(conteudo).then((noticia) => { console.log("upado com sucesso ", noticia) });
+    // firebase.database().ref("/Usuarios/" + usuOnline.uid + "/").on("value", snapshot => {
+    //     console.log("not " + snapshot.val().nome);
+    //     aut_nome = snapshot.val().nome;
+    //     aut_img = snapshot.val().img_perfil;
 
-    firebase.database().ref("noticias").push(noticia).then(snapshot => {
-        //adicionaCardATela(card, snapshot.key);
-        firebase.database().ref("usuarios/" + infos_usu.uid).child("/noticias").set({ "noticia": snapshot.user.uid })
-    });
+    //     console.log("oq importas  " + aut_nome + " " + aut_img);
+    // });
+
+    //console.log("oq importa " + aut_nome + " " + aut_img);
+
+
 
 }
 
@@ -237,7 +253,6 @@ $(function() {
         fileReader.readAsDataURL(file);
     });
 });
-var imgNoticiaId = firebase.database().ref().push().key;
 
 
 

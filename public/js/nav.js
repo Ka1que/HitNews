@@ -89,3 +89,8 @@ function habilitarLinks(uid) {
         window.location.href = "./escreverNoticia.html?"
     });
 }
+
+noticias: [
+    0: noticia - original,
+    1: noticia - okay,
+]
