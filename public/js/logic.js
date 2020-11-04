@@ -57,7 +57,7 @@ var container_conteudo = document.getElementById("Container_conteudo");
  * @param {Object} infoAutor Objeto que carrega informações do autor
  * @param {Object} idNoticia chave da noticia
  */
-function colocarNoticiaContainer(infoNot, idNoticia,infoAutor) {
+function colocarNoticiaContainer(infoNot, idNoticia, infoAutor) {
     let container_noticia = document.createElement("div"); //cria div que vai conter a noticia
     container_noticia.classList.add("Container_noticia"); //diz que a classe da div é Container_noticia para o css
 
@@ -72,6 +72,7 @@ function colocarNoticiaContainer(infoNot, idNoticia,infoAutor) {
     let imagem_noticia = document.createElement("img"); //cria a tag de imagem para a noticia
     imagem_noticia.src = infoNot.imagem; //coloca a imagem da noticia na tag
     imagem_noticia.classList.add("Noticia_img"); //coloca a imagem da noticia dentro da tag
+    imagem_noticia.alt = "";
     linkNot.appendChild(imagem_noticia); //deixa a img como filha da tag "a"
 
     let rodape_noticia = document.createElement("div") //cria div que vai ser o rodapé da noticia
@@ -208,7 +209,7 @@ document.addEventListener("DOMContentLoaded", function() {
         snapshot.forEach((value) => {
             firebase.database().ref("Usuarios").child(value.val().autor_uid).once('value').then(snapshot => {
                 //console.log("valor: ", snapshot.val());
-                colocarNoticiaContainer(value.val(),value.key,snapshot.val());
+                colocarNoticiaContainer(value.val(), value.key, snapshot.val());
             });
             //colocarNoticiaContainer(value.val(), value.key,);
         });
@@ -227,7 +228,7 @@ window.addEventListener("scroll", () => {
 function GerarNoticia() {
     firebase.database().ref("noticias").once("value", snapshot => {
         snapshot.forEach((value) => {
-            
+
             colocarNoticiaContainer(value.val(), value.key);
         });
     });
