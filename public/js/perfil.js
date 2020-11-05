@@ -214,6 +214,10 @@ document.addEventListener("DOMContentLoaded", function() {
 firebase.auth().onAuthStateChanged(function(user) {
     if (user.uid == getUsuId()) {
         document.getElementById("container_edt").style.display = "block";
+        firebase.database().ref("Usuarios").child(getUsuId()).once("value").then((result) => {
+            document.getElementById("Input_nome").value = result.val().nome;
+            document.getElementById("Input_sobrenome").value = result.val().sobrenome;
+        });
     } else {
         document.getElementById("Login_link").style.display = "flex";
         console.log("anithing is here");
@@ -255,5 +259,48 @@ $(function() {
 });
 
 function confirmarAlteracoes() {
+    var nome = document.getElementById("Input_nome");
+    var sobrenome = document.getElementById("Input_sobrenome");
 
+
+
+    var url = getUrlImagemPerfil("banner");
+    var url2 = getUrlImagemPerfil("perfil");
+
+    if (nome.trim() == "") {
+        alert("nome não pode ser vazio")
+        return null;
+    }
+    if (sobrenome.trim() == "") {
+        alert("sobrenome não pode ser vazio");
+        return null;
+    }
+    if (nome.indexOf(" ") >= 0) {
+        mensagem("Nao use espaços no nome ");
+        return null;
+    }
+
+
+
+}
+
+//faz upload da img que o usuario escolheu e fornece uma url para usar a imagem
+function getUrlImagemPerfil(type) {
+    let imgNoticiaId = firebase.database().ref().push().key;
+    let url_img;
+    var img = document.getElementById("input_img_" + type).files[0];
+    if (imgNoticiaId) {
+
+        firebase.storage().ref("img_" + type + "/" + imgNoticiaId).put(img).then(function(snapshot) {
+            console.log('Uploaded ', snapshot);
+            firebase.storage().ref("img_" + type + "/" + imgNoticiaId).getDownloadURL().then(url => {
+                console.log("link pra download: ", url);
+                url_img = url;
+                return url_img + "";
+            })
+        });
+
+    } else {
+        return "";
+    }
 }
