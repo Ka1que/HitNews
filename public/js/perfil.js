@@ -192,7 +192,7 @@ document.addEventListener("DOMContentLoaded", function() {
             "data": "30/10/2020"
           };*/
 
-        inserirDadosEdicao(result);
+        //inserirDadosEdicao(result);
 
         firebase.database().ref("Usuarios").child(result.key).child("noticias").once("value").then(snapshot => {
             snapshot.forEach(valor => {
@@ -253,3 +253,7 @@ $(function() {
         fileReader.readAsDataURL(file);
     });
 });
+
+function confirmarAlteracoes() {
+
+}

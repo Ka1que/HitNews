@@ -197,7 +197,7 @@ function salvarNoticia(conteudo_noticia) {
 
         let url_img;
         var img_noticia = document.getElementById("Input_imagem").files[0];
-        if (imgNoticiaId) {
+        if (hasImg == true) {
             firebase.storage().ref("img_noticias/" + imgNoticiaId).put(img_noticia).then(function(snapshot) {
                 console.log('Uploaded ', snapshot);
                 firebase.storage().ref("img_noticias/" + imgNoticiaId).getDownloadURL().then(url => {
@@ -213,12 +213,14 @@ function salvarNoticia(conteudo_noticia) {
                         "views": 0
                     }
                     firebase.database().ref("noticias").push(noticia).then(snapshot => {
+                        function getid() { return snapshot.key + "" };
                         var noticiaid = {
                             "status": true
                         }
 
-                        firebase.database().ref("usuarios/" + snapshot.autor_uid + "/noticias/" + snapshot.key).set(noticiaid).then(() => {
-                            console.log("okay");
+                        firebase.database().ref("Usuarios/").child(usuOnline + "/noticias/" + snapshot.key).set(noticiaid).then((user) => {
+                            alert("okay : " + getid());
+                            window.location.href = "./noticia.html?" + String(getid());
                         });
                     });
                 })
@@ -244,8 +246,8 @@ function salvarNoticia(conteudo_noticia) {
                     "status": true
                 }
 
-                firebase.database().ref("usuarios/").child(snapshot.autor_uid + "/noticias/" + snapshot.key).set(noticiaid).then((user) => {
-                    console.log("okay : " + getid());
+                firebase.database().ref("Usuarios/").child(usuOnline + "/noticias/" + snapshot.key).set(noticiaid).then((user) => {
+                    alert("okay : " + getid());
                     window.location.href = "./noticia.html?" + String(getid());
                 });
             });
@@ -267,6 +269,7 @@ function salvarNoticia(conteudo_noticia) {
     }
 }
 
+var hasImg = false;
 
 $(function() {
     $('#Input_imagem').change(function() {
@@ -276,6 +279,7 @@ $(function() {
         fileReader.onloadend = function() {
             $("#preview_img").attr("src", fileReader.result)
         }
+        hasImg = true;
         fileReader.readAsDataURL(file);
     });
 });
