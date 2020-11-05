@@ -37,7 +37,7 @@ var container_conteudo = document.getElementsByClassName("Container_conteudo")[0
  * @param {Object} idNoticia chave da noticia
  * @param {Object} infoAutor Objeto que carrega informações do autor
  */
-function carregarNoticias(infoNot, infoAutor,idNoticia) {
+function carregarNoticias(infoNot, infoAutor, idNoticia) {
     let container_noticia = document.createElement("div"); //cria div que vai conter a noticia
     container_noticia.classList.add("Container_noticia"); //diz que a classe da div é Container_noticia para o css
 
@@ -176,7 +176,7 @@ document.addEventListener("DOMContentLoaded", function() {
     firebase.database().ref("Usuarios").child(getUsuId()).once("value").then((result) => {
 
         carregar_perfil(result.val());
-         //ativa a função para colocar o perfil na tela
+        //ativa a função para colocar o perfil na tela
         /*var noticia = {
             "autor" : {
               "uid" : "1",
@@ -191,23 +191,65 @@ document.addEventListener("DOMContentLoaded", function() {
             "views" : 0,
             "data": "30/10/2020"
           };*/
-          firebase.database().ref("Usuarios").child(result.key).child("noticias").once("value").then(snapshot =>{
-            snapshot.forEach( valor =>{
 
-                firebase.database().ref("noticias").child(valor.key).once("value").then(noticia =>{
+        inserirDadosEdicao(result);
 
-                    carregarNoticias(noticia.val(),result.val(),noticia.key);
+        firebase.database().ref("Usuarios").child(result.key).child("noticias").once("value").then(snapshot => {
+            snapshot.forEach(valor => {
+                firebase.database().ref("noticias").child(valor.key).once("value").then(noticia => {
+                    carregarNoticias(noticia.val(), result.val(), noticia.key);
                 });
-                
             });
-            
+        });
 
-          });
-        
-        
     }).catch((err) => {
         console.log("erro: ", err);
     });
 
 
+
+
 })
+
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user.uid == getUsuId()) {
+        document.getElementById("container_edt").style.display = "block";
+    } else {
+        document.getElementById("Login_link").style.display = "flex";
+        console.log("anithing is here");
+
+    }
+});
+
+function abrir_editor() {
+    document.getElementById("editar_perfil").style.display = "block";
+}
+
+function fechar_editor() {
+    document.getElementById("editar_perfil").style.display = "none";
+}
+
+
+$(function() {
+    $('#input_img_perf').change(function() {
+        const file = $(this)[0].files[0];
+        const fileReader = new FileReader();
+
+        fileReader.onloadend = function() {
+            $("#preview_img_perfil").attr("src", fileReader.result);
+        }
+        fileReader.readAsDataURL(file);
+    });
+});
+
+$(function() {
+    $('#input_img_banner').change(function() {
+        const file = $(this)[0].files[0];
+        const fileReader = new FileReader();
+
+        fileReader.onloadend = function() {
+            $("#preview_img_banner").attr("src", fileReader.result);
+        }
+        fileReader.readAsDataURL(file);
+    });
+});

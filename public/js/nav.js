@@ -49,11 +49,6 @@ function goBack() {
     firebase.initializeApp(firebaseConfig);
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    uid = localStorage.getItem("uid");
-    console.log(`id do usuario logado: ${uid}`);
-});
-
 //verifica se tem um usuario logado
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
@@ -61,7 +56,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         document.getElementById("opcoes_usu").style.display = "block";
         setInfosUsu(user);
         habilitarLinks(user.uid);
-        console.warn(" hellowow " + user.id);
+        console.warn(" hellowow " + user.uid);
     } else {
         document.getElementById("Login_link").style.display = "flex";
         console.log("anithing is here");
@@ -89,3 +84,24 @@ function habilitarLinks(uid) {
         window.location.href = "./escreverNoticia.html?"
     });
 }
+
+// function temaEscuro() {
+//     var tema = localStorage.getItem("tema");
+
+//     if (tema) {
+//         document.getElementsByTagName("body")[0].style.backgroundColor = "#000";
+//         localStorage.removeItem("tema");
+//     } else {
+//         document.getElementsByTagName("body")[0].style.backgroundColor = "#fff";
+//         localStorage.removeItem("tema");
+//         localStorage.setItem("tema", "0");
+//     }
+// }
+// document.getElementsByTagName("body")[0].addEventListener("onload", () => {
+//     var tema = localStorage.getItem("tema");
+//     if (!tema) {
+//         document.getElementsByTagName("body")[0].style.backgroundColor = "#fff";
+//         localStorage.removeItem("tema");
+//         localStorage.setItem("tema", "0");
+//     }
+// })

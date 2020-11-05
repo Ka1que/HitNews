@@ -108,7 +108,6 @@ function validacaoCadastro() {
 
     if (validacao == true) {
         cadastrar();
-        alert("a");
     }
 }
 var ref = firebase.database().ref("Usuarios");
