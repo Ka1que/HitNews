@@ -212,9 +212,10 @@ document.addEventListener("DOMContentLoaded", function() {
 })
 
 firebase.auth().onAuthStateChanged(function(user) {
-    if (user.uid == getUsuId()) {
+    let usuId = getUsuId() + "";
+    if (user.uid == usuId) {
         document.getElementById("container_edt").style.display = "block";
-        firebase.database().ref("Usuarios").child(getUsuId()).once("value").then((result) => {
+        firebase.database().ref("Usuarios").child(usuId).once("value").then((result) => {
             document.getElementById("Input_nome").value = result.val().nome;
             document.getElementById("Input_sobrenome").value = result.val().sobrenome;
         });
@@ -227,6 +228,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 
 function abrir_editor() {
     document.getElementById("editar_perfil").style.display = "block";
+    window.scrollTo(0, 0)
 }
 
 function fechar_editor() {
@@ -235,7 +237,7 @@ function fechar_editor() {
 
 
 $(function() {
-    $('#input_img_perf').change(function() {
+    $('#input_img_perfil').change(function() {
         const file = $(this)[0].files[0];
         const fileReader = new FileReader();
 
@@ -258,49 +260,88 @@ $(function() {
     });
 });
 
-function confirmarAlteracoes() {
-    var nome = document.getElementById("Input_nome");
-    var sobrenome = document.getElementById("Input_sobrenome");
-
-
-
-    var url = getUrlImagemPerfil("banner");
-    var url2 = getUrlImagemPerfil("perfil");
-
-    if (nome.trim() == "") {
-        alert("nome não pode ser vazio")
-        return null;
-    }
-    if (sobrenome.trim() == "") {
-        alert("sobrenome não pode ser vazio");
-        return null;
-    }
-    if (nome.indexOf(" ") >= 0) {
-        mensagem("Nao use espaços no nome ");
-        return null;
-    }
-
-
-
-}
-
 //faz upload da img que o usuario escolheu e fornece uma url para usar a imagem
-function getUrlImagemPerfil(type) {
-    let imgNoticiaId = firebase.database().ref().push().key;
+async function getUrlImagemPerfil(type) {
+    var imgNoticiaId = firebase.database().ref().push().key;
     let url_img;
     var img = document.getElementById("input_img_" + type).files[0];
     if (imgNoticiaId) {
 
-        firebase.storage().ref("img_" + type + "/" + imgNoticiaId).put(img).then(function(snapshot) {
+        await firebase.storage().ref("img_" + type + "/" + imgNoticiaId).put(img).then(async function(snapshot) {
             console.log('Uploaded ', snapshot);
-            firebase.storage().ref("img_" + type + "/" + imgNoticiaId).getDownloadURL().then(url => {
+            await firebase.storage().ref("img_" + type + "/" + imgNoticiaId).getDownloadURL().then(url => {
                 console.log("link pra download: ", url);
                 url_img = url;
-                return url_img + "";
+
             })
         });
-
+        return url_img;
     } else {
         return "";
     }
+}
+
+async function updatePerfil(infos_perfil) {
+
+    firebase.database().ref("/Usuarios/" + usuOnline).set(infos_perfil).then(() => {
+        window.location.reload();
+        console.log(Object.values(infos_perfil));
+        alert("okey");
+    });
+    return false
+}
+
+firebase.auth().onAuthStateChanged(function(user) {
+    //console.log(user.uid);
+    usuOnline = user.uid;
+});
+
+
+
+var url_banner;
+var url_perfil;
+var usuOnline;
+
+async function confirmarAlteracoes() {
+
+    var nome = String(document.getElementById("Input_nome").value);
+    var sobrenome = String(document.getElementById("Input_sobrenome"));
+
+    if (document.getElementById("input_img_perfil").files[0] == undefined) {
+        url_perfil = document.getElementById("img_usu").src;
+    } else {
+        url_perfil = await getUrlImagemPerfil("perfil");
+    };
+
+    if (document.getElementById("input_img_banner").files[0] == undefined) {
+        url_banner = document.getElementById("banner_usu").src;
+    } else {
+        url_banner = await getUrlImagemPerfil("banner");
+    };
+
+    if (nome.trim() == "") {
+        alert("nome não pode ser vazio");
+        return true;
+    }
+    if (sobrenome.trim() == "") {
+        alert("sobrenome não pode ser vazio");
+        return true;
+    }
+    if (nome.indexOf(" ") >= 0) {
+        alert("Nao use espaços no nome ");
+        return true;
+    }
+    console.log("ESSE È O PERF Q VAI PRO BD ", url_banner);
+
+    console.log("ESSE È O BANNER Q VAI PRO BD ", url_banner);
+
+    var new_perf = {
+        nome: String(document.getElementById("Input_nome").value),
+        sobrenome: String(document.getElementById("Input_sobrenome").value),
+        img_banner: url_banner,
+        img_perfil: url_perfil
+
+    }
+
+    updatePerfil(new_perf);
 }

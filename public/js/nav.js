@@ -85,18 +85,18 @@ function habilitarLinks(uid) {
     });
 }
 
-function temaEscuro() {
-    var tema = localStorage.getItem("tema");
+// function temaEscuro() {
+//     var tema = localStorage.getItem("tema");
 
-    if (tema) {
-        document.getElementsByTagName("body")[0].style.backgroundColor = "#000";
-        localStorage.removeItem("tema");
-    } else {
-        document.getElementsByTagName("body")[0].style.backgroundColor = "#fff";
-        localStorage.removeItem("tema");
-        localStorage.setItem("tema", "0");
-    }
-}
+//     if (tema) {
+//         document.getElementsByTagName("body")[0].style.backgroundColor = "#000";
+//         localStorage.removeItem("tema");
+//     } else {
+//         document.getElementsByTagName("body")[0].style.backgroundColor = "#fff";
+//         localStorage.removeItem("tema");
+//         localStorage.setItem("tema", "0");
+//     }
+// }
 document.getElementsByTagName("body")[0].addEventListener("onload", () => {
     var tema = localStorage.getItem("tema");
     if (!tema) {

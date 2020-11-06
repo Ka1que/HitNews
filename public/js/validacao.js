@@ -157,7 +157,7 @@ function logar() {
         console.log("logado com usuario: ", snapshot.user.uid);
         localStorage.setItem("uid", (snapshot.user.uid + ""));
         window.history.back();
-        //window.location.href = "./perfil.html?" + String(snapshot.user.uid);
+        window.location.href = "./perfil.html#?" + String(snapshot.user.uid);
     }).catch(err => {
         console.log("deu um erro: ", err);
         document.getElementById("mensagem").innerHTML = "Erro no login, Verifique Email/Senha"
