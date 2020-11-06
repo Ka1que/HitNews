@@ -2,9 +2,10 @@
  *  Declaração de variaveis globais 
  */
 
-let uid = null;
+var uid = null;
 var infos_usu;
 var isPaginaPerfilIgualLogado = false;
+var uidLogaddo;
 
 //metodos get e set para informações dos usuarios
 function getInfosUsu() {
@@ -54,10 +55,10 @@ firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         document.getElementById("container_usuario_link").style.display = "flex";
         document.getElementById("opcoes_usu").style.display = "block";
-        isPaginaPerfilIgualLogado = true;
         setInfosUsu(user);
         habilitarLinks(user.uid);
         console.warn(" hellowow " + user.uid);
+        uidLogaddo = user.uid;
     } else {
         document.getElementById("Login_link").style.display = "flex";
         console.log("anithing is here");

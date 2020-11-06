@@ -44,7 +44,7 @@ var CDEditor = function(textarea, modo) {
     this.save = function() { // função que pega todo o conteudo q foi editado e chama a função salvarNoticia passando como parametro o conteudo editado 
         textareaSource.value = CDEditorIframe.document.body.innerHTML;
         var conteudo = CDEditorIframe.document.body.innerHTML;
-        if (modo == editar) {
+        if (modo == "editar") {
             updateNoticia(conteudo);
         } else {
             salvarNoticia(conteudo);
@@ -304,36 +304,45 @@ function showImage(input) {
     // document.getElementById("preview_img").style.background = document.getElementById("Input_imagem").value;
 };*/
 
-function updateNoticia(conteudo_noticia) {
+var noticia;
+
+function setNoticia(obj) {
+    noticia = obj;
+}
+
+async function updateNoticia(conteudo_noticia) {
+    let url = window.location.href;
+    let idDaNoticia = url.substring(url.indexOf("?") + 1);
     // verifica algumas condições para noticia poder ir ao BD
     if (document.getElementById("Input_fonte").value != "" &&
         document.getElementById("Input_titulo").value != "" &&
         conteudo_noticia != "") {
 
-        var noticia;
+
         let url_img;
         var img_noticia = document.getElementById("Input_imagem").files[0];
         if (hasImg == true) { // verifica se a noticia tem uma imagem 
-            firebase.storage().ref("img_noticias/" + imgNoticiaId).put(img_noticia).then(function(snapshot) { // manda a imagem que o usuario escolheu para o storage
-                firebase.storage().ref("img_noticias/" + imgNoticiaId).getDownloadURL().then(url => { //pega a url de acesso 
-                    url_img = url;
-                    noticia = { // define o objeto que vai ser enviado para o BD
+            await firebase.storage().ref("img_noticias/" + imgNoticiaId).put(img_noticia).then(async function(snapshot) { // manda a imagem que o usuario escolheu para o storage
+                await firebase.storage().ref("img_noticias/" + imgNoticiaId).getDownloadURL().then(snapshot => { //pega a url de acesso 
+                    // define o objeto que vai ser enviado para o BD
+                    setNoticia({
                         "conteudo": conteudo_noticia,
                         "fonte": document.getElementById("Input_fonte").value,
-                        "imagem": url,
-                        "titulo": document.getElementById("Input_titulo").value,
-
-                    }
-                })
-            });
+                        "imagem": snapshot,
+                        "titulo": document.getElementById("Input_titulo").value
+                    });
+                });
+            }).catch(err => { console.log(err) });
         } else { // se o usuario não tiver uma imagem ele vai execuar este bloco de código(igual ao bloco anterior só que sem ter q mandar a img para o firebase storage)
-            var noticia = {
+            setNoticia({
                 "conteudo": conteudo_noticia,
                 "fonte": document.getElementById("Input_fonte").value,
-                "titulo": document.getElementById("Input_titulo").value,
-            }
+                "titulo": document.getElementById("Input_titulo").value
+            });
         }
-        firebase.database().ref("noticias").update(noticia).then(snapshot => {}); // manda a noticia para o BD
+        firebase.database().ref("noticias").child(idDaNoticia).update(noticia).then(snapshot => {
+            window.location.href = "./noticia.html?" + idDaNoticia;
+        }); // manda a noticia para o BD
 
     } else { // aviso caso deixe algo desregulado na fonte ou no titulo da noticia
         alert("noticia precisa de uma fonte e de um titulo e tem que ter um conteudo na noticia")
