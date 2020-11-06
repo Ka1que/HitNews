@@ -104,4 +104,33 @@ document.getElementsByTagName("body")[0].addEventListener("onload", () => {
         localStorage.removeItem("tema");
         localStorage.setItem("tema", "0");
     }
-})
+});
+
+
+//Sistema de pesquisa de notícias
+function pesquisar(pesquisa)
+{
+    //console.log("Pesquisa: ", pesquisa);
+
+    //Faz a pesquisa da string usada, mas só em notícias que começam com a string pesquisada
+    //Faz a pesquisa em maiúsculo
+    firebase.database().ref("noticias").orderByChild("titulo").startAt(pesquisa.toUpperCase()).endAt(pesquisa.toUpperCase()+"\uf8ff").once("value", function(result){
+    
+        result.forEach(element => {
+            console.log("Busca: ", element.val().titulo);
+        });
+        
+    
+    });
+
+    //Faz a pesquisa em minúsculo, é necessário fazer desse jeito por conta de como o Firebase pesquisa os dados
+    firebase.database().ref("noticias").orderByChild("titulo").startAt(pesquisa.toLowerCase()).endAt(pesquisa.toLowerCase()+"\uf8ff").once("value", function(result){
+    
+        result.forEach(element => {
+            console.log("Busca: ", element.val().titulo);
+        });
+        
+    
+    });
+
+}
