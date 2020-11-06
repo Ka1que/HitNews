@@ -7,6 +7,7 @@ var infos_usu;
 
 //metodos get e set para algumas variaveis
 
+
 function getInfosUsu() {
     return infos_usu;
 }
@@ -110,27 +111,16 @@ document.getElementsByTagName("body")[0].addEventListener("onload", () => {
 //Sistema de pesquisa de notícias
 function pesquisar(pesquisa)
 {
+
+    var pesquisar = pesquisa.replaceAll(" ", "+");
+
+    window.location.href = "./pesquisa.html?resultado="+pesquisar;
+    /*
     //console.log("Pesquisa: ", pesquisa);
+    
+    
 
-    //Faz a pesquisa da string usada, mas só em notícias que começam com a string pesquisada
-    //Faz a pesquisa em maiúsculo
-    firebase.database().ref("noticias").orderByChild("titulo").startAt(pesquisa.toUpperCase()).endAt(pesquisa.toUpperCase()+"\uf8ff").once("value", function(result){
+    */
     
-        result.forEach(element => {
-            console.log("Busca: ", element.val().titulo);
-        });
-        
-    
-    });
-
-    //Faz a pesquisa em minúsculo, é necessário fazer desse jeito por conta de como o Firebase pesquisa os dados
-    firebase.database().ref("noticias").orderByChild("titulo").startAt(pesquisa.toLowerCase()).endAt(pesquisa.toLowerCase()+"\uf8ff").once("value", function(result){
-    
-        result.forEach(element => {
-            console.log("Busca: ", element.val().titulo);
-        });
-        
-    
-    });
 
 }
