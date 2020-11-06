@@ -74,7 +74,7 @@ function deslogar() {
     firebase.auth().signOut().then(() => {
         console.log("deslogado");
     });
-    window.location.reload();
+    window.location.href = "./index.html?";
 }
 // habilita algumas opções no menu lateral para usuarios logados
 function habilitarLinks(uid) {
