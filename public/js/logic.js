@@ -247,17 +247,19 @@ document.addEventListener("DOMContentLoaded", function() {
                 //colocarNoticiaContainer(value.val(), value.key,);
             });
         });
+        //Scroll carrega mais noticias
+        let scrollCondition = 2800;
+        window.addEventListener("scroll", () => {
+        if (window.scrollY > scrollCondition) {
+            GerarNoticia();
+            scrollCondition += 3000;
+            }   
+        });
     }
 });
 
 
-let scrollCondition = 2800;
-window.addEventListener("scroll", () => {
-    if (window.scrollY > scrollCondition) {
-        GerarNoticia();
-        scrollCondition += 3000;
-    }
-});
+
 
 function GerarNoticia() {
     firebase.database().ref("noticias").on("value", (snapshot) => {
