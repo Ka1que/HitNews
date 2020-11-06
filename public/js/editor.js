@@ -276,7 +276,7 @@ document.addEventListener("DOMContentLoaded", async function() {
 
     let url = window.location.href;
     let idDaNoticia = url.substring(url.indexOf("?") + 1);
-
+    var modo;
     console.log("." + idDaNoticia + ".");
 
     if (idDaNoticia != "" && idDaNoticia != " ") {
@@ -285,10 +285,13 @@ document.addEventListener("DOMContentLoaded", async function() {
             document.getElementById("preview_img").src = "" + snapshot.val().imagem;
             document.getElementById("Input_fonte").value = "" + snapshot.val().fonte;
             document.getElementsByTagName("textarea")[0].innerHTML = snapshot.val().conteudo;
+            modo = "editar";
         });
+    } else {
+        modo = "criar";
     }
 
-    editor = new CDEditor('#editor', "editar");
+    editor = new CDEditor('#editor', modo);
 })
 
 
@@ -327,6 +330,8 @@ async function updateNoticia(conteudo_noticia) {
             await firebase.storage().ref("img_noticias/" + imgNoticiaId).put(img_noticia).then(async function(snapshot) { // manda a imagem que o usuario escolheu para o storage
                 await firebase.storage().ref("img_noticias/" + imgNoticiaId).getDownloadURL().then(snapshot => { //pega a url de acesso 
                     // define o objeto que vai ser enviado para o BD
+
+
                     setNoticia({
                         "conteudo": conteudo_noticia,
                         "fonte": document.getElementById("Input_fonte").value,
