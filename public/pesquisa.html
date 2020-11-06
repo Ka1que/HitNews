@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HITNEWS</title>
+
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link rel="icon" href="LogoGuia.png">
+
+</head>
+
+<body onload="">
+
+    <div id="menu">
+        <a href="./index.html?#" id="link_logo">
+            <div id="logo">
+                <div id="retangle"></div>
+            </div>
+        </a>
+
+        <div id="menu_sidenav_container" onclick="openNav()">
+            <div id="menu_icon">
+                <svg width="70" height="70" viewBox="0 0 70 70" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect y="47.8333" width="70" height="11.6667" rx="5.83333" fill="black"/>
+                <rect y="29.1667" width="70" height="11.6667" rx="5.83333" fill="black"/>
+                <rect y="10.5" width="70" height="11.6667" rx="5.83333" fill="black"/>
+                </svg>
+            </div>
+
+        </div>
+
+        <div class="search-box">
+            <input class="search-txt" type="text" name="" placeholder="Pesquisar notícia">
+            <div class="search-btn" onclick="pesquisar(document.getElementsByClassName('search-txt')[0].value)">
+                <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M29.7346 26.1404L23.9827 20.3885C23.7231 20.1289 23.3712 19.9846 23.0019 19.9846H22.0615C23.6539 17.9481 24.6 15.3865 24.6 12.6C24.6 5.97116 19.2289 0.600006 12.6 0.600006C5.97116 0.600006 0.600006 5.97116 0.600006 12.6C0.600006 19.2289 5.97116 24.6 12.6 24.6C15.3865 24.6 17.9481 23.6539 19.9846 22.0615V23.0019C19.9846 23.3712 20.1289 23.7231 20.3885 23.9827L26.1404 29.7346C26.6827 30.2769 27.5596 30.2769 28.0962 29.7346L29.7289 28.1019C30.2712 27.5596 30.2712 26.6827 29.7346 26.1404ZM12.6 19.9846C8.52116 19.9846 5.21539 16.6846 5.21539 12.6C5.21539 8.52116 8.51539 5.21539 12.6 5.21539C16.6789 5.21539 19.9846 8.51539 19.9846 12.6C19.9846 16.6789 16.6846 19.9846 12.6 19.9846Z" fill="black"/>
+                </svg>
+            </div>
+        </div>
+
+        <a href="./login.html#?" id="Login_link">Login</a>
+
+        <div id="container_usuario_link">
+            <svg width="32" height="28" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M32 26.1039C31.3704 23.4476 29.4389 21.032 26.5432 19.2797C23.6476 17.5274 19.7786 17.3354 15.9658 17.3034C12.153 17.2713 8.6389 17.4013 5.68504 19.1044C2.73119 20.8076 0.718893 23.19 0 25.8351L15.9658 28L32 26.1039Z" fill="black"/>
+                <ellipse cx="15.8885" cy="7.07866" rx="7.00077" ry="7.07866" fill="#0B0B0B"/>
+            </svg>
+        </div>
+
+
+    </div>
+
+
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+
+        <!-- <svg id="svg_darktheme" onclick="temaEscuro()" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="25" cy="25" r="20" fill="black"/>
+            <path d="M25 8C29.5087 8 33.8327 9.79107 37.0208 12.9792C40.2089 16.1673 42 20.4913 42 25C42 29.5087 40.2089 33.8327 37.0208 37.0208C33.8327 40.2089 29.5087 42 25 42L25 25L25 8Z" fill="white"/>
+            <path d="M25 0L29.3301 6H20.6699L25 0Z" fill="black"/>
+            <path d="M50 25L44 29.3301V20.6699L50 25Z" fill="black"/>
+            <path d="M25 50L20.6699 44H29.3301L25 50Z" fill="black"/>
+            <path d="M0 25L6 20.6699L6 29.3301L0 25Z" fill="black"/>
+            <path d="M43.1924 7.53553L42.0116 14.84L35.8879 8.71631L43.1924 7.53553Z" fill="black"/>
+            <path d="M7.19723 7.14688L14.4912 8.39136L8.31422 14.4614L7.19723 7.14688Z" fill="black"/>
+            <path d="M7.53551 42.1924L8.71629 34.8879L14.84 41.0116L7.53551 42.1924Z" fill="black"/>
+            <path d="M43.1924 42.1924L35.8879 41.0116L42.0116 34.8879L43.1924 42.1924Z" fill="black"/>
+        </svg> -->
+
+
+        <a href="?#">Pagina Inicial</a>
+        <a href="feedback.html?#">Deixe seu Feedback</a>
+        <a href="#">sobre Nós</a>
+        <br />
+        <div id="opcoes_usu">
+            <h2>opções do usuario</h2>
+            <a id="link_perfil" href="#">Perfil</a>
+            <div id="svg_edit" hidden>
+                <svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="74.3982" height="274.565" transform="matrix(0.707353 0.706861 -0.707353 0.706861 247.374 0)" fill="black"/>
+                    <path d="M30.0719 269.949L53.8355 194.152L105.921 246.202L30.0719 269.949Z" fill="black"/>
+                    <path d="M31.5383 267C29.471 276.149 32.2471 292.145 59.8904 282.937" stroke="black" stroke-width="4"/>
+                    <path d="M59 283.196C68.4507 277.884 104.54 261.061 109.502 292.935" stroke="black" stroke-width="4"/>
+                </svg>
+            </div>
+
+            <a id="link_escreverNoticia" href="#">Escrever uma noticia</a>
+
+            <div id="container_svg_exit">
+                <svg id="svg_exit" width="263" height="300" viewBox="0 0 263 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="200" height="300" rx="30" fill="black"/>
+                    <rect x="10" y="10" width="180" height="280" rx="30" fill="white"/>
+                    <rect y="266" width="200" height="34" fill="white"/>
+                    <path d="M90 150L165 106.699V193.301L90 150Z" fill="black"/>
+                    <rect x="162" y="142" width="101" height="16" fill="black"/>
+                </svg>
+
+
+                <a id="txt_deslogar" href="#" onclick="deslogar()">deslogar</a>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="Container_conteudo">
+
+      
+    </div>
+
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+            https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+
+
+    <script>
+        // Your web app's Firebase configuration
+        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+        var firebaseConfig = {
+            apiKey: "AIzaSyBB7MMwkJFt9Rclu-gu26K7C-Rgnu3IWn4",
+            authDomain: "hitnews-be38c.firebaseapp.com",
+            databaseURL: "https://hitnews-be38c.firebaseio.com",
+            projectId: "hitnews-be38c",
+            storageBucket: "hitnews-be38c.appspot.com",
+            messagingSenderId: "779470699260",
+            appId: "1:779470699260:web:675f129b5fc57d91ee3579",
+            measurementId: "G-CXR3JTJ2P2"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+    </script>
+    <script src="./js/logic.js"></script>
+    <script src="./js/nav.js"></script>
+</body>
+
+</html>

@@ -200,22 +200,56 @@ document.addEventListener("DOMContentLoaded", function() {
       console.log(eita.length);
       Comentei aqui pra fazer as minhas coisas -Enrique
       */
+    let url = window.location.href  
 
+    if(url.substring(url.indexOf("?") ,url.indexOf("?")-13) == "pesquisa.html")
+    {
+        var pesquisa = url.substring(url.indexOf("=")+1).replaceAll("+"," ");
+        //Faz a pesquisa da string usada, mas só em notícias que começam com a string pesquisada
+        //Faz a pesquisa em maiúsculo
+        firebase.database().ref("noticias").orderByChild("titulo").startAt(pesquisa.toUpperCase()).endAt(pesquisa.toUpperCase()+"\uf8ff").once("value", function(snapshot){
+        
+            snapshot.forEach(value => {
+                firebase.database().ref("Usuarios").child(value.val().autor_uid).once('value').then(snapshot => {
+                    //console.log("valor: ", snapshot.val());
+                    colocarNoticiaContainer(value.val(), value.key, snapshot.val());
+                });
+            });
+            
+            
+            
+        });
+    
+        //Faz a pesquisa em minúsculo, é necessário fazer desse jeito por conta de como o Firebase pesquisa os dados
+        firebase.database().ref("noticias").orderByChild("titulo").startAt(pesquisa.toLowerCase()).endAt(pesquisa.toLowerCase()+"\uf8ff").once("value", function(snapshot){
+        
+            snapshot.forEach(value => {
+                firebase.database().ref("Usuarios").child(value.val().autor_uid).once('value').then(snapshot => {
+                    //console.log("valor: ", snapshot.val());
+                    colocarNoticiaContainer(value.val(), value.key, snapshot.val());
+                });
+            });
+            
+        
+        });
+
+    }else{
     /**
      * pega as noticias do nó de noticias no banco de dados e adiciona no site
      */
-    firebase.database().ref("noticias").on("value", (snapshot) => {
-        console.warn("noticia dom loaded" + snapshot);
-        snapshot.forEach((value) => {
-            firebase.database().ref("Usuarios").child(value.val().autor_uid).once('value').then(snapshot => {
-                //console.log("valor: ", snapshot.val());
-                colocarNoticiaContainer(value.val(), value.key, snapshot.val());
+        firebase.database().ref("noticias").on("value", (snapshot) => {
+            console.warn("noticia dom loaded" + snapshot);
+            snapshot.forEach((value) => {
+                firebase.database().ref("Usuarios").child(value.val().autor_uid).once('value').then(snapshot => {
+                    //console.log("valor: ", snapshot.val());
+                    colocarNoticiaContainer(value.val(), value.key, snapshot.val());
+                });
+                //colocarNoticiaContainer(value.val(), value.key,);
             });
-            //colocarNoticiaContainer(value.val(), value.key,);
         });
-    });
-
+    }
 });
+
 
 let scrollCondition = 2800;
 window.addEventListener("scroll", () => {
