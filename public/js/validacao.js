@@ -10,7 +10,7 @@ function limparMensagem() {
 //validacao é uma variavel pra verificar se está tudo okay na minha validação 
 //(p.s. existe 2 validações a minha e a do firebase Autentication)
 let validacao = true;
-//
+
 function validacaoCadastro() {
     validacao = true;
     var nome = document.getElementById("Input_nome").value;
