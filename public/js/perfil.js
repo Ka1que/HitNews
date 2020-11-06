@@ -297,7 +297,7 @@ var url_banner;
 var url_perfil;
 var usuOnline;
 
-async function confirmarAlteracoes() {
+async function confirmarAlteracoes() { // verifica as alterações e define o objeto que terá as novas informações dos usuarios
 
     var nome = String(document.getElementById("Input_nome").value);
     var sobrenome = String(document.getElementById("Input_sobrenome"));
@@ -335,5 +335,5 @@ async function confirmarAlteracoes() {
         img_banner: url_banner,
         img_perfil: url_perfil
     }
-    updatePerfil(new_perf);
+    updatePerfil(new_perf); //função que manda para atualizar o perfil do usu com as novas alterações
 }
