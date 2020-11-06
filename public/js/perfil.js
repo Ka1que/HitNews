@@ -205,15 +205,13 @@ document.addEventListener("DOMContentLoaded", function() {
     }).catch((err) => {
         console.log("erro: ", err);
     });
+});
 
-
-
-
-})
-
+/* verifica se tem alguém logado e se o perfil é da pessoa logada  */
 firebase.auth().onAuthStateChanged(function(user) {
     let usuId = getUsuId() + "";
     if (user.uid == usuId) {
+        /* se for o mesmo usuario logado e o perfil então ele disponibiliza a edição */
         document.getElementById("container_edt").style.display = "block";
         firebase.database().ref("Usuarios").child(usuId).once("value").then((result) => {
             document.getElementById("Input_nome").value = result.val().nome;
@@ -225,7 +223,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 
     }
 });
-
+/* nome auto explicativo -- abre a area de edição do perfil e a outra função fecha */
 function abrir_editor() {
     document.getElementById("editar_perfil").style.display = "block";
     window.scrollTo(0, 0)
@@ -235,6 +233,7 @@ function fechar_editor() {
     document.getElementById("editar_perfil").style.display = "none";
 }
 
+// coloca um Listenner no input de imagens na edição de perfil e mostra a imagem carregada
 
 $(function() {
     $('#input_img_perfil').change(function() {
@@ -247,7 +246,7 @@ $(function() {
         fileReader.readAsDataURL(file);
     });
 });
-
+// mesma coisa da anterior só que para o banner do usuario
 $(function() {
     $('#input_img_banner').change(function() {
         const file = $(this)[0].files[0];
@@ -272,7 +271,6 @@ async function getUrlImagemPerfil(type) {
             await firebase.storage().ref("img_" + type + "/" + imgNoticiaId).getDownloadURL().then(url => {
                 console.log("link pra download: ", url);
                 url_img = url;
-
             })
         });
         return url_img;
@@ -280,29 +278,26 @@ async function getUrlImagemPerfil(type) {
         return "";
     }
 }
-
+// função que salva no BD o perfil atualizado do usuario
 async function updatePerfil(infos_perfil) {
 
-    firebase.database().ref("/Usuarios/" + usuOnline).set(infos_perfil).then(() => {
+    firebase.database().ref("/Usuarios/" + usuOnline).update(infos_perfil).then(() => {
         window.location.reload();
         console.log(Object.values(infos_perfil));
-        alert("okey");
     });
     return false
 }
+//define a variavel como o id do usuario logado pra utilização em algumas busacas
 
 firebase.auth().onAuthStateChanged(function(user) {
-    //console.log(user.uid);
     usuOnline = user.uid;
 });
-
-
 
 var url_banner;
 var url_perfil;
 var usuOnline;
 
-async function confirmarAlteracoes() {
+async function confirmarAlteracoes() { // verifica as alterações e define o objeto que terá as novas informações dos usuarios
 
     var nome = String(document.getElementById("Input_nome").value);
     var sobrenome = String(document.getElementById("Input_sobrenome"));
@@ -311,37 +306,34 @@ async function confirmarAlteracoes() {
         url_perfil = document.getElementById("img_usu").src;
     } else {
         url_perfil = await getUrlImagemPerfil("perfil");
-    };
+    }
 
     if (document.getElementById("input_img_banner").files[0] == undefined) {
         url_banner = document.getElementById("banner_usu").src;
     } else {
         url_banner = await getUrlImagemPerfil("banner");
-    };
+    }
 
     if (nome.trim() == "") {
         alert("nome não pode ser vazio");
         return true;
     }
+
     if (sobrenome.trim() == "") {
         alert("sobrenome não pode ser vazio");
         return true;
     }
+
     if (nome.indexOf(" ") >= 0) {
         alert("Nao use espaços no nome ");
         return true;
     }
-    console.log("ESSE È O PERF Q VAI PRO BD ", url_banner);
-
-    console.log("ESSE È O BANNER Q VAI PRO BD ", url_banner);
 
     var new_perf = {
         nome: String(document.getElementById("Input_nome").value),
         sobrenome: String(document.getElementById("Input_sobrenome").value),
         img_banner: url_banner,
         img_perfil: url_perfil
-
     }
-
-    updatePerfil(new_perf);
+    updatePerfil(new_perf); //função que manda para atualizar o perfil do usu com as novas alterações
 }

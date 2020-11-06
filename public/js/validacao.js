@@ -10,8 +10,8 @@ function limparMensagem() {
 //validacao é uma variavel pra verificar se está tudo okay na minha validação 
 //(p.s. existe 2 validações a minha e a do firebase Autentication)
 let validacao = true;
-//
-function validacaoCadastro() {
+
+function validacaoCadastro() { //valida o cadastro do usuario NOTA: também tem a validação 
     validacao = true;
     var nome = document.getElementById("Input_nome").value;
     var email = document.getElementById("Input_login").value;
@@ -21,8 +21,6 @@ function validacaoCadastro() {
     var senha = document.getElementById("Input_senha").value;
     var senha2 = document.getElementById("Input_senha_repeat").value;
     var sobrenome = document.getElementById("Input_sobrenome").value;
-
-    console.log(`${nome} ${email} ${dia} ${mes} ${ano} ${senha} ${senha2} ${sobrenome}`)
 
     limparMensagem();
     if (email == "") {

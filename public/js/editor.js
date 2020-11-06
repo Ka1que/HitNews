@@ -18,7 +18,7 @@ function getUrlImagemNoticia() {
         return "";
     }
 }
-
+// js do editor de texto
 var CDEditor = function(textarea) {
     this.textarea = textarea;
 
@@ -27,29 +27,28 @@ var CDEditor = function(textarea) {
     var toolbar = [];
     var iframe = null;
 
-
+    //define algumas opções que os usuarios podem usar como as fontes possiveis
     var fonts = ['Arial', 'Calibri', 'Comic Sans MS', 'Impact', 'Trebuchet MS', 'Times New Roman'];
     var sizes = [1, 2, 3, 4, 5, 6, 7];
     var self = this;
 
+    //construtor do editor
     var init = function() {
         textareaSource = document.querySelector(self.textarea);
-        textareaSource.style.display = 'none';
+        textareaSource.style.display = 'none'; // retira o textarea pois vai ser subistituido por outro laout mais é conservado o conteudo do text area
         container = textareaSource.parentElement;
         initToolbar(container, toolbar);
         initIframe(container, textareaSource);
     };
 
-    this.save = function() {
+    this.save = function() { // função que pega todo o conteudo q foi editado e chama a função salvarNoticia passando como parametro o conteudo editado 
         textareaSource.value = CDEditorIframe.document.body.innerHTML;
         var conteudo = CDEditorIframe.document.body.innerHTML;
 
-
         salvarNoticia(conteudo);
-
     };
 
-    var Component = function(commandName, element, event) {
+    var Component = function(commandName, element, event) { //define os comandos da toolbar
         this.commandName = commandName;
         this.element = document.createElement('li');
         this.element.appendChild(element);
@@ -64,7 +63,7 @@ var CDEditor = function(textarea) {
 
     };
 
-    var ComponentButton = function(commandName, icon) {
+    var ComponentButton = function(commandName, icon) { //carrega o botão na toolbar
         var button = document.createElement('button');
         var buttonIcon = document.createElement('i');
         buttonIcon.classList.add('fa', 'fa-' + icon);
@@ -72,7 +71,7 @@ var CDEditor = function(textarea) {
         Component.call(this, commandName, button, 'click');
     };
 
-    var ComponentSelect = function(commandName, values) {
+    var ComponentSelect = function(commandName, values) { //mesma coisa que o componentButton e Component só q para os que tem caixa de opções
         var select = document.createElement('select');
         values.forEach(function(value) {
             var option = document.createElement('option');
@@ -89,7 +88,7 @@ var CDEditor = function(textarea) {
         };
     };
 
-    var Space = function() {
+    var Space = function() { // cria uma barra para dividir as funções da toolbar da edição da noticia ex: opções|home|exemplo|sair 
         this.element = document.createElement('li');
         this.element.classList.add('space');
         this.element.innerHTML = '&nbsp;';
@@ -100,13 +99,14 @@ var CDEditor = function(textarea) {
     };
 
     var initToolbar = function(container, toolbar) {
-        //HIGNLIGHTER BUTTON
+        // Marca texto
         var highlighter = new ComponentButton('backColor', 'highlighter');
         highlighter.recoverValue = function() {
             return selectedNode().style.backgroundColor === 'yellow' ? 'white' : 'yellow';
         };
 
-        //FONTCOLOR MENU
+        /* NOTA: foi removido pois usuarios poderiam adicionar cores muito ruins para noticias ent resolvemos deixar a opção do marca texto no caso de algo importante */
+        //Cor da Fonte
         //var fontColor = new ComponentSelect('forecolor', colors);
         /*Array.from(fontColor.element.firstChild.options).forEach(function(option) {
             option.style.color = option.value;
@@ -117,12 +117,12 @@ var CDEditor = function(textarea) {
             return fontColor.element.firstChild.value;
         };*/
 
-        // LINK BUTTON
+        // botão do link
         var link = new ComponentButton('createLink', 'link');
         link.recoverValue = function() {
             return prompt('Entre com o endereço do link:');
         };
-
+        // define os componentes da toolbar
         toolbar.push(
             new ComponentSelect('fontname', fonts),
             new ComponentSelect('fontsize', sizes),
@@ -150,7 +150,7 @@ var CDEditor = function(textarea) {
 
         renderToolbar(container, toolbar);
     };
-
+    //  poe a toolbar na tela 
     var renderToolbar = function(container, toolbar) {
         var list = document.createElement('ul');
         list.classList.add('cd-toolbar');
@@ -162,7 +162,7 @@ var CDEditor = function(textarea) {
         container.appendChild(list);
     };
 
-    var initIframe = function(container, textareaSource) {
+    var initIframe = function(container, textareaSource) { // coloca o editor na tela como um Iframe
         var iframe = document.createElement('iframe');
         iframe.setAttribute('src', 'about:blank');
         iframe.setAttribute('contenteditable', 'true');
@@ -185,25 +185,23 @@ var infosAutor;
 var usuOnline;
 
 firebase.auth().onAuthStateChanged(function(user) {
-    //console.log(user.uid);
     usuOnline = user.uid;
 });
-
+//função que manda a noticia para o BD
 function salvarNoticia(conteudo_noticia) {
-
+    // verifica algumas condições para noticia poder ir ao BD
     if (document.getElementById("Input_fonte").value != "" &&
         document.getElementById("Input_titulo").value != "" &&
         conteudo_noticia != "") {
 
         let url_img;
         var img_noticia = document.getElementById("Input_imagem").files[0];
-        if (hasImg == true) {
-            firebase.storage().ref("img_noticias/" + imgNoticiaId).put(img_noticia).then(function(snapshot) {
-                console.log('Uploaded ', snapshot);
-                firebase.storage().ref("img_noticias/" + imgNoticiaId).getDownloadURL().then(url => {
-                    console.log("link pra download: ", url);
+        if (hasImg == true) { // verifica se a noticia tem uma imagem 
+            firebase.storage().ref("img_noticias/" + imgNoticiaId).put(img_noticia).then(function(snapshot) { // manda a imagem que o usuario escolheu para o storage
+
+                firebase.storage().ref("img_noticias/" + imgNoticiaId).getDownloadURL().then(url => { //pega a url de acesso 
                     url_img = url;
-                    var noticia = {
+                    var noticia = { // define o objeto que vai ser enviado para o BD
                         "autor_uid": usuOnline,
                         "conteudo": conteudo_noticia,
                         "curtidas": 0,
@@ -212,21 +210,20 @@ function salvarNoticia(conteudo_noticia) {
                         "titulo": document.getElementById("Input_titulo").value,
                         "views": 0
                     }
-                    firebase.database().ref("noticias").push(noticia).then(snapshot => {
+                    firebase.database().ref("noticias").push(noticia).then(snapshot => { // manda a noticia para o BD
                         function getid() { return snapshot.key + "" };
                         var noticiaid = {
                             "status": true
                         }
 
-                        firebase.database().ref("Usuarios/").child(usuOnline + "/noticias/" + snapshot.key).set(noticiaid).then((user) => {
-                            alert("okay : " + getid());
+                        firebase.database().ref("Usuarios/").child(usuOnline + "/noticias/" + snapshot.key).set(noticiaid).then((user) => { //dá para o autor o ID da noticia que ele escreveu (para facilitar na hora de mostrar as noticias dele)
                             window.location.href = "./noticia.html?" + String(getid());
                         });
                     });
                 })
             });
 
-        } else {
+        } else { // se o usuario não tiver uma imagem ele vai execuar este bloco de código(igual ao bloco anterior só que sem ter q mandar a img para o firebase storage)
 
             var noticia = {
                 "autor_uid": usuOnline,
@@ -237,8 +234,6 @@ function salvarNoticia(conteudo_noticia) {
                 "titulo": document.getElementById("Input_titulo").value,
                 "views": 0
             }
-
-            //ref.push(conteudo).then((noticia) => { console.log("upado com sucesso ", noticia) });
 
             firebase.database().ref("noticias").push(noticia).then(snapshot => {
                 function getid() { return snapshot.key + "" };
@@ -253,24 +248,14 @@ function salvarNoticia(conteudo_noticia) {
             });
 
         }
-        // firebase.database().ref("/Usuarios/" + usuOnline.uid + "/").on("value", snapshot => {
-        //     console.log("not " + snapshot.val().nome);
-        //     aut_nome = snapshot.val().nome;
-        //     aut_img = snapshot.val().img_perfil;
 
-        //     console.log("oq importas  " + aut_nome + " " + aut_img);
-        // });
-
-        //console.log("oq importa " + aut_nome + " " + aut_img);
-
-
-    } else {
+    } else { // aviso caso deixe algo desregulado na fonte ou no titulo da noticia
         alert("noticia precisa de uma fonte e de um titulo e tem que ter um conteudo na noticia")
     }
 }
 
 var hasImg = false;
-
+// adiciona um listenner para quando o usuario subir uma imagem ele poder ver antes de ir para o storage
 $(function() {
     $('#Input_imagem').change(function() {
         const file = $(this)[0].files[0];

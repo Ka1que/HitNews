@@ -1,6 +1,6 @@
 var container = document.getElementsByClassName("Container_conteudo")[0];
 var refNoticia = firebase.database().ref("noticias");
-
+// pega o ID da noticia na url
 function getNoticiaId() {
     let url = window.location.href;
     let id = url.substring(url.indexOf("?") + 1);
@@ -159,9 +159,11 @@ function carregarNoticia(infoNot, infoAutor) {
     svg_like.appendChild(path_like);
 
     container_likes.appendChild(svg_like);
-    container_likes.addEventListener("click", () => { contador_likes.style.color = "#ff0000";
+    container_likes.addEventListener("click", () => {
+        contador_likes.style.color = "#ff0000";
         path_like.setAttribute("stroke", "red");
-        addLike(infoNot.curtidas); });
+        addLike(infoNot.curtidas);
+    });
 
     /**
      * colocando numero de curtidas no container

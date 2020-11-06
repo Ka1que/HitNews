@@ -5,9 +5,7 @@
 let uid = null;
 var infos_usu;
 
-//metodos get e set para algumas variaveis
-
-
+//metodos get e set para informações dos usuarios
 function getInfosUsu() {
     return infos_usu;
 }
@@ -34,7 +32,7 @@ function goBack() {
 }
 
 (function() {
-    // Your web app's Firebase configuration
+    // configurações de acesso ao fire base
     // For Firebase JS SDK v7.20.0 and later, measurementId is optional
     var firebaseConfig = {
         apiKey: "AIzaSyBB7MMwkJFt9Rclu-gu26K7C-Rgnu3IWn4",
@@ -75,7 +73,7 @@ function deslogar() {
     });
     window.location.reload();
 }
-// habilita algumas funções para usuarios logados
+// habilita algumas opções no menu lateral para usuarios logados
 function habilitarLinks(uid) {
     document.getElementById("link_perfil").addEventListener("click", () => {
         window.location.href = "./perfil.html?" + String(uid)
@@ -109,18 +107,12 @@ document.getElementsByTagName("body")[0].addEventListener("onload", () => {
 
 
 //Sistema de pesquisa de notícias
-function pesquisar(pesquisa)
-{
+function pesquisar(pesquisa) {
 
     var pesquisar = pesquisa.replaceAll(" ", "+");
 
-    window.location.href = "./pesquisa.html?resultado="+pesquisar;
+    window.location.href = "./pesquisa.html?resultado=" + pesquisar;
     /*
-    //console.log("Pesquisa: ", pesquisa);
-    
-    
-
+    console.log("Pesquisa: ", pesquisa);
     */
-    
-
 }
