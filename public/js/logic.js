@@ -238,17 +238,17 @@ document.addEventListener("DOMContentLoaded", function() {
                 });
             });
         });
+        //codigo que faz o infinity scroll/
+        let scrollCondition = 2800;
+        window.addEventListener("scroll", () => {
+        if (window.scrollY > scrollCondition) {
+            GerarNoticia();
+            scrollCondition += 3000;
+            }   
+        });
     }
 });
 
-//codigo que faz o infinity scroll
-let scrollCondition = 2800;
-window.addEventListener("scroll", () => {
-    if (window.scrollY > scrollCondition) {
-        GerarNoticia();
-        scrollCondition += 3000;
-    }
-});
 // coloca as noticias na tela dentro do container_conteudo
 function GerarNoticia() {
     firebase.database().ref("noticias").on("value", (snapshot) => {

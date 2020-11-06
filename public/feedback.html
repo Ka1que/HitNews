@@ -31,20 +31,15 @@
         </div>
 
         <div class="search-box">
-            <input class="search-txt" type="text" name="" placeholder="Type to search">
-            <a class="search-btn" href="#">
+            <input class="search-txt" type="text" name="" placeholder="Pesquisar notícia">
+            <div class="search-btn" onclick="pesquisar(document.getElementsByClassName('search-txt')[0].value)">
                 <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M29.7346 26.1404L23.9827 20.3885C23.7231 20.1289 23.3712 19.9846 23.0019 19.9846H22.0615C23.6539 17.9481 24.6 15.3865 24.6 12.6C24.6 5.97116 19.2289 0.600006 12.6 0.600006C5.97116 0.600006 0.600006 5.97116 0.600006 12.6C0.600006 19.2289 5.97116 24.6 12.6 24.6C15.3865 24.6 17.9481 23.6539 19.9846 22.0615V23.0019C19.9846 23.3712 20.1289 23.7231 20.3885 23.9827L26.1404 29.7346C26.6827 30.2769 27.5596 30.2769 28.0962 29.7346L29.7289 28.1019C30.2712 27.5596 30.2712 26.6827 29.7346 26.1404ZM12.6 19.9846C8.52116 19.9846 5.21539 16.6846 5.21539 12.6C5.21539 8.52116 8.51539 5.21539 12.6 5.21539C16.6789 5.21539 19.9846 8.51539 19.9846 12.6C19.9846 16.6789 16.6846 19.9846 12.6 19.9846Z" fill="black"/>
                 </svg>
-            </a>
+            </div>
         </div>
 
-
-        <a class="acesso">
-            <i class="fas fa-user-circle fa-4x "></i>
-        </a>
-
-        <a href="./login.html?#" id="Login_link">Login</a>
+        <a href="./login.html#?" id="Login_link">Login</a>
 
         <div id="container_usuario_link">
             <svg width="32" height="28" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -53,15 +48,54 @@
             </svg>
         </div>
 
-
     </div>
-
 
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <a href="?#">Pagina Inicial</a>
+
+        <!-- <svg id="svg_darktheme" onclick="temaEscuro()" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="25" cy="25" r="20" fill="black"/>
+            <path d="M25 8C29.5087 8 33.8327 9.79107 37.0208 12.9792C40.2089 16.1673 42 20.4913 42 25C42 29.5087 40.2089 33.8327 37.0208 37.0208C33.8327 40.2089 29.5087 42 25 42L25 25L25 8Z" fill="white"/>
+            <path d="M25 0L29.3301 6H20.6699L25 0Z" fill="black"/>
+            <path d="M50 25L44 29.3301V20.6699L50 25Z" fill="black"/>
+            <path d="M25 50L20.6699 44H29.3301L25 50Z" fill="black"/>
+            <path d="M0 25L6 20.6699L6 29.3301L0 25Z" fill="black"/>
+            <path d="M43.1924 7.53553L42.0116 14.84L35.8879 8.71631L43.1924 7.53553Z" fill="black"/>
+            <path d="M7.19723 7.14688L14.4912 8.39136L8.31422 14.4614L7.19723 7.14688Z" fill="black"/>
+            <path d="M7.53551 42.1924L8.71629 34.8879L14.84 41.0116L7.53551 42.1924Z" fill="black"/>
+            <path d="M43.1924 42.1924L35.8879 41.0116L42.0116 34.8879L43.1924 42.1924Z" fill="black"/>
+        </svg> -->
+
+        <a href="./index.html?#">Pagina Inicial</a>
         <a href="feedback.html?#">Deixe seu Feedback</a>
         <a href="#">sobre Nós</a>
+        <br />
+        <div id="opcoes_usu">
+            <h2>opções do usuario</h2>
+            <a id="link_perfil" href="#">Perfil</a>
+            <div id="svg_edit" hidden>
+                <svg width="300" height="300" viewBox="0 0 300 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="74.3982" height="274.565" transform="matrix(0.707353 0.706861 -0.707353 0.706861 247.374 0)" fill="black"/>
+                    <path d="M30.0719 269.949L53.8355 194.152L105.921 246.202L30.0719 269.949Z" fill="black"/>
+                    <path d="M31.5383 267C29.471 276.149 32.2471 292.145 59.8904 282.937" stroke="black" stroke-width="4"/>
+                    <path d="M59 283.196C68.4507 277.884 104.54 261.061 109.502 292.935" stroke="black" stroke-width="4"/>
+                </svg>
+            </div>
+
+            <a id="link_escreverNoticia" href="#">Escrever uma noticia</a>
+
+            <div id="container_svg_exit">
+                <svg id="svg_exit" width="263" height="300" viewBox="0 0 263 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect width="200" height="300" rx="30" fill="black"/>
+                    <rect x="10" y="10" width="180" height="280" rx="30" fill="white"/>
+                    <rect y="266" width="200" height="34" fill="white"/>
+                    <path d="M90 150L165 106.699V193.301L90 150Z" fill="black"/>
+                    <rect x="162" y="142" width="101" height="16" fill="black"/>
+                </svg>
+
+                <a id="txt_deslogar" href="#" onclick="deslogar()">deslogar</a>
+            </div>
+        </div>
     </div>
 
     <div id="area" class="login">
@@ -96,6 +130,7 @@
 
     <!-- TODO: Add SDKs for Firebase products that you want to use
             https://firebase.google.com/docs/web/setup#available-libraries -->
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script> 
     <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-database.js"></script>
 
     <script>
