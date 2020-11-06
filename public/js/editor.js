@@ -277,7 +277,9 @@ document.addEventListener("DOMContentLoaded", async function() {
     let url = window.location.href;
     let idDaNoticia = url.substring(url.indexOf("?") + 1);
 
-    if (idDaNoticia.trim() != window.location.href || idDaNoticia.trim() != "") {
+    console.log("." + idDaNoticia + ".");
+
+    if (idDaNoticia != "" && idDaNoticia != " ") {
         await firebase.database().ref("noticias").child(idDaNoticia).once("value").then(snapshot => {
             document.getElementById("Input_titulo").value = "" + snapshot.val().titulo;
             document.getElementById("preview_img").src = "" + snapshot.val().imagem;
