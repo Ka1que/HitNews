@@ -319,6 +319,23 @@
         width: 70%;
         padding: 0px;
     }
+    
+    .svg_edt_noticia {
+        border-radius: 40px;
+        padding: 10px;
+        cursor: pointer;
+        transition: 0.4s;
+    }
+    
+    .svg_edt_noticia:hover {
+        background-color: lightblue;
+    }
+    
+    #container_editar_noticia {
+        float: right;
+        margin-right: 20px;
+        margin-top: 25px;
+    }
     /*
     *       LOGIN , CADASTRO E FEEDBACK CSS 
     */

@@ -35,18 +35,12 @@ document.addEventListener("DOMContentLoaded", function() {
     firebase.database().ref("noticias").child(getNoticiaId()).once("value").then((result) => {
         console.log("noticia q veio do BD :" + result.val().titulo)
         firebase.database().ref("Usuarios").child(result.val().autor_uid).once('value').then(snapshot => {
-            //console.log("valor: ", snapshot.val());
-            //colocarNoticiaContainer(value.val(),value.key,snapshot.val());
             carregarNoticia(result.val(), snapshot.val());
         });
-
     }).catch((err) => {
         console.log(err);
     });
-
-
 });
-
 
 /**
  * Coloca uma noticia dentro do container
@@ -55,6 +49,15 @@ document.addEventListener("DOMContentLoaded", function() {
 function carregarNoticia(infoNot, infoAutor) {
     let container_noticia = document.createElement("div");
     container_noticia.classList.add("Container_noticia");
+
+    if (isPaginaPerfilIgualLogado == true) {
+        let containerEditor = document.createElement("a");
+        containerEditor.id = "container_editar_noticia";
+        containerEditor.classList.add("svg_edt_noticia");
+        containerEditor.innerHTML = "<svg id=\"svg_edt\" width=\"300\" height=\"300\" viewBox=\"0 0 300 300\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"74.3982\" height=\"274.565\" transform=\"matrix(0.707353 0.706861 -0.707353 0.706861 247.374 0)\" fill=\"black\"/><path d=\"M30.0719 269.949L53.8355 194.152L105.921 246.202L30.0719 269.949Z\" fill=\"black\"/><path d=\"M31.5383 267C29.471 276.149 32.2471 292.145 59.8904 282.937\" stroke=\"black\" stroke-width=\"4\"/><path d=\"M59 283.196C68.4507 277.884 104.54 261.061 109.502 292.935\" stroke=\"black\" stroke-width=\"4\"/></svg>";
+        containerEditor.href = "./escreverNoticia.html?" + idNoticia;
+        linkNot.appendChild(containerEditor);
+    };
 
     let titulo_noticia = document.createElement("h1");
     titulo_noticia.classList.add("Noticia_titulo");

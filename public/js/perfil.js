@@ -18,6 +18,8 @@ function carregar_perfil(perfil) {
 
 }
 
+var isPaginaPerfilIgualLogado = false;
+
 /**
  * pega Id do usuário da url
  */
@@ -43,6 +45,15 @@ function carregarNoticias(infoNot, infoAutor, idNoticia) {
 
     let linkNot = document.createElement("a"); //cria tag a para depois adicionar o link da página da noticia
     linkNot.href = "./noticia.html?" + idNoticia; //adiciona o link da página da notica para a tag "a" criada
+
+    if (isPaginaPerfilIgualLogado == true) {
+        let containerEditor = document.createElement("a");
+        containerEditor.id = "container_editar_noticia";
+        containerEditor.classList.add("svg_edt_noticia");
+        containerEditor.innerHTML = "<svg id=\"svg_edt\" width=\"300\" height=\"300\" viewBox=\"0 0 300 300\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><rect width=\"74.3982\" height=\"274.565\" transform=\"matrix(0.707353 0.706861 -0.707353 0.706861 247.374 0)\" fill=\"black\"/><path d=\"M30.0719 269.949L53.8355 194.152L105.921 246.202L30.0719 269.949Z\" fill=\"black\"/><path d=\"M31.5383 267C29.471 276.149 32.2471 292.145 59.8904 282.937\" stroke=\"black\" stroke-width=\"4\"/><path d=\"M59 283.196C68.4507 277.884 104.54 261.061 109.502 292.935\" stroke=\"black\" stroke-width=\"4\"/></svg>";
+        containerEditor.href = "./escreverNoticia.html?" + idNoticia;
+        linkNot.appendChild(containerEditor);
+    };
 
     let titulo_noticia = document.createElement("h1"); //cria a tag do titulo da notícia
     titulo_noticia.classList.add("Noticia_titulo"); //diz que a classe do h1 é Noticia_titulo
@@ -176,6 +187,7 @@ document.addEventListener("DOMContentLoaded", function() {
     firebase.database().ref("Usuarios").child(getUsuId()).once("value").then((result) => {
 
         carregar_perfil(result.val());
+
         //ativa a função para colocar o perfil na tela
         /*var noticia = {
             "autor" : {
@@ -206,7 +218,6 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log("erro: ", err);
     });
 });
-
 /* verifica se tem alguém logado e se o perfil é da pessoa logada  */
 firebase.auth().onAuthStateChanged(function(user) {
     let usuId = getUsuId() + "";
@@ -217,6 +228,7 @@ firebase.auth().onAuthStateChanged(function(user) {
             document.getElementById("Input_nome").value = result.val().nome;
             document.getElementById("Input_sobrenome").value = result.val().sobrenome;
         });
+        isPaginaPerfilIgualLogado = true;
     } else {
         document.getElementById("Login_link").style.display = "flex";
         console.log("anithing is here");

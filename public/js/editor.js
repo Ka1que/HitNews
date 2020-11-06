@@ -19,7 +19,7 @@ function getUrlImagemNoticia() {
     }
 }
 // js do editor de texto
-var CDEditor = function(textarea) {
+var CDEditor = function(textarea, modo) {
     this.textarea = textarea;
 
     var textareaSource = null;
@@ -44,8 +44,11 @@ var CDEditor = function(textarea) {
     this.save = function() { // função que pega todo o conteudo q foi editado e chama a função salvarNoticia passando como parametro o conteudo editado 
         textareaSource.value = CDEditorIframe.document.body.innerHTML;
         var conteudo = CDEditorIframe.document.body.innerHTML;
-
-        salvarNoticia(conteudo);
+        if (modo == editar) {
+            updateNoticia(conteudo);
+        } else {
+            salvarNoticia(conteudo);
+        }
     };
 
     var Component = function(commandName, element, event) { //define os comandos da toolbar
@@ -268,7 +271,23 @@ $(function() {
         fileReader.readAsDataURL(file);
     });
 });
+var editor
+document.addEventListener("DOMContentLoaded", async function() {
 
+    let url = window.location.href;
+    let idDaNoticia = url.substring(url.indexOf("?") + 1);
+
+    if (idDaNoticia.trim() != window.location.href || idDaNoticia.trim() != "") {
+        await firebase.database().ref("noticias").child(idDaNoticia).once("value").then(snapshot => {
+            document.getElementById("Input_titulo").value = "" + snapshot.val().titulo;
+            document.getElementById("preview_img").src = "" + snapshot.val().imagem;
+            document.getElementById("Input_fonte").value = "" + snapshot.val().fonte;
+            document.getElementsByTagName("textarea")[0].innerHTML = snapshot.val().conteudo;
+        });
+    }
+
+    editor = new CDEditor('#editor', "editar");
+})
 
 
 /*
@@ -284,3 +303,39 @@ function showImage(input) {
     }
     // document.getElementById("preview_img").style.background = document.getElementById("Input_imagem").value;
 };*/
+
+function updateNoticia(conteudo_noticia) {
+    // verifica algumas condições para noticia poder ir ao BD
+    if (document.getElementById("Input_fonte").value != "" &&
+        document.getElementById("Input_titulo").value != "" &&
+        conteudo_noticia != "") {
+
+        var noticia;
+        let url_img;
+        var img_noticia = document.getElementById("Input_imagem").files[0];
+        if (hasImg == true) { // verifica se a noticia tem uma imagem 
+            firebase.storage().ref("img_noticias/" + imgNoticiaId).put(img_noticia).then(function(snapshot) { // manda a imagem que o usuario escolheu para o storage
+                firebase.storage().ref("img_noticias/" + imgNoticiaId).getDownloadURL().then(url => { //pega a url de acesso 
+                    url_img = url;
+                    noticia = { // define o objeto que vai ser enviado para o BD
+                        "conteudo": conteudo_noticia,
+                        "fonte": document.getElementById("Input_fonte").value,
+                        "imagem": url,
+                        "titulo": document.getElementById("Input_titulo").value,
+
+                    }
+                })
+            });
+        } else { // se o usuario não tiver uma imagem ele vai execuar este bloco de código(igual ao bloco anterior só que sem ter q mandar a img para o firebase storage)
+            var noticia = {
+                "conteudo": conteudo_noticia,
+                "fonte": document.getElementById("Input_fonte").value,
+                "titulo": document.getElementById("Input_titulo").value,
+            }
+        }
+        firebase.database().ref("noticias").update(noticia).then(snapshot => {}); // manda a noticia para o BD
+
+    } else { // aviso caso deixe algo desregulado na fonte ou no titulo da noticia
+        alert("noticia precisa de uma fonte e de um titulo e tem que ter um conteudo na noticia")
+    }
+}

@@ -4,6 +4,7 @@
 
 let uid = null;
 var infos_usu;
+var isPaginaPerfilIgualLogado = false;
 
 //metodos get e set para informações dos usuarios
 function getInfosUsu() {
@@ -53,6 +54,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         document.getElementById("container_usuario_link").style.display = "flex";
         document.getElementById("opcoes_usu").style.display = "block";
+        isPaginaPerfilIgualLogado = true;
         setInfosUsu(user);
         habilitarLinks(user.uid);
         console.warn(" hellowow " + user.uid);
