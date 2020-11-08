@@ -1,19 +1,18 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 
 <head>
+    <title> HitNews </title>
     <meta charset="UTF-8">
-    <title>HITNEWS</title>
 
-    <link rel="stylesheet" type="text/css" href="./css/style.css">
+    <link type="text/css" rel="stylesheet" href="./css/style.css">
     <link rel="icon" href="LogoGuia.png">
-
 </head>
 
 <body onload="">
 
     <div id="menu">
-        <a href="./index.html?#" id="link_logo">
+        <a href="./index.html" id="link_logo">
             <div id="logo">
                 <div id="retangle"></div>
             </div>
@@ -39,7 +38,12 @@
             </div>
         </div>
 
-        <a href="./login.html?#?" id="Login_link">Login</a>
+
+        <a class="acesso">
+            <i class="fas fa-user-circle fa-4x "></i>
+        </a>
+
+        <a href="./login.html" id="Login_link">Login</a>
 
         <div id="container_usuario_link">
             <svg width="32" height="28" viewBox="0 0 32 28" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -48,24 +52,12 @@
             </svg>
         </div>
 
+
     </div>
+
 
     <div id="mySidenav" class="sidenav">
         <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-
-        <!-- <svg id="svg_darktheme" onclick="temaEscuro()" width="50" height="50" viewBox="0 0 50 50" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="25" cy="25" r="20" fill="black"/>
-            <path d="M25 8C29.5087 8 33.8327 9.79107 37.0208 12.9792C40.2089 16.1673 42 20.4913 42 25C42 29.5087 40.2089 33.8327 37.0208 37.0208C33.8327 40.2089 29.5087 42 25 42L25 25L25 8Z" fill="white"/>
-            <path d="M25 0L29.3301 6H20.6699L25 0Z" fill="black"/>
-            <path d="M50 25L44 29.3301V20.6699L50 25Z" fill="black"/>
-            <path d="M25 50L20.6699 44H29.3301L25 50Z" fill="black"/>
-            <path d="M0 25L6 20.6699L6 29.3301L0 25Z" fill="black"/>
-            <path d="M43.1924 7.53553L42.0116 14.84L35.8879 8.71631L43.1924 7.53553Z" fill="black"/>
-            <path d="M7.19723 7.14688L14.4912 8.39136L8.31422 14.4614L7.19723 7.14688Z" fill="black"/>
-            <path d="M7.53551 42.1924L8.71629 34.8879L14.84 41.0116L7.53551 42.1924Z" fill="black"/>
-            <path d="M43.1924 42.1924L35.8879 41.0116L42.0116 34.8879L43.1924 42.1924Z" fill="black"/>
-        </svg> -->
-
         <a href="./index.html?#">Pagina Inicial</a>
         <a href="feedback.html?#">Deixe seu Feedback</a>
         <a href="./aboutus.html?#">sobre Nós</a>
@@ -98,46 +90,78 @@
         </div>
     </div>
 
-    <div id="Container_conteudo">
+    <div id="area" class="login">
 
-        <!--
-        <div class="Container_noticia" href="./noticia.html" name="ID_Noticia">
-            <a href="./noticia.html">
-                <h1 class="Noticia_titulo">Uchiha Madara, Charingan que não acaba</h1>
-
-                <img src=".\madara.jpg" class="Noticia_img">
-            </a>
-            <div class="Container_rodape">
-                <a class="Container_autor" href="usu_perfil.html">
-                    <img src=".\naruto.jpg" class="Autor_img">
-                    <h3 class="Autor_nome">Naruto</h3>
-                </a>
-
-
-
-                <div class="Container_view">
-                    <svg class="Svg_view" width="44" height="26" viewBox="0 0 44 26" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M11.4763 17.7648C11.4763 17.7648 16.0398 26.7575 26.4662 23.1436C26.9805 22.9653 27.4869 22.7509 27.9437 22.4549C29.1808 21.6533 31.8166 19.5127 34.0199 14.804M9.78052 2.60551L12.0748 8.17182" stroke="black" stroke-width="4"/>
-                            <path d="M21.7506 0V5.56632" stroke="black" stroke-width="4"/>
-                            <path d="M32.9227 3.19767L31.4264 7.69809" stroke="black" stroke-width="4"/>
-                            <path d="M1.99997 21.0808C22.8478 -2.13187 42 21.0808 42 21.0808" stroke="black" stroke-width="4"/>
-                        </svg>
-                    <h3 class="Num_view">877</h3>
-                </div>
-
-                <div class="Container_like">
-                    <svg class="Svg_like" width="29" height="30" viewBox="0 0 29 30" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5.26171 12.4511C2.68928 10.315 2.9884 7.62957 2.9884 7.62957C4.24475 2.07572 8.73148 2.07572 8.73148 2.07572C11.7227 1.34334 15.2523 6.16482 15.2523 6.16482C15.2523 6.16482 17.2265 1.52644 21.7133 2.07572C26.2 2.625 26.9778 5.9207 26.9778 7.62957C26.9778 9.33845 26.9179 10.315 25.4223 12.4511C23.9267 14.5871 15.2523 26 15.2523 26L8.73148 17.5166" stroke="black" stroke-width="4"/>
-                        </svg>
-
-                    <h3 class="Num_like">987</h3>
-                </div>
+        <div id="margem">
+            <h1 id="font">Enrique Messias de Sousa</h1>
+            <h2 id="font">8</h2>
+            <br />
+            <img src=".\enrique.jpeg" id="img_usu">
+            <br />
+            <br />
+            <p>
+                <h2>Contato</h2>
+            </p>
+            <div id="div">enriquemessias.souza@gmail.com<br />https://www.linkedin.com/in/enrique-messias-de-souza-20a635183/ https://twitter.com/EndoTheBear
             </div>
+
+            <br />
+            <br />
+            <br />
+
+
+            <h1 id="font">Fabrixxio </h1>
+            <h2 id="font">9</h2>
+            <br />
+            <img src=".\fabricio.jpeg" id="img_usu">
+            <br />
+            <br />
+            <p>
+                <h2>Contato</h2>
+            </p>
+            <div id="div">fasturci@gmail.com<br /> 11 99023-2242
+            </div>
+
+            <br />
+            <br />
+            <br />
+
+
+            <h1 id="font">Kaique de Godoy Silva</h1>
+            <h2 id="font">23</h2>
+            <br />
+            <img src=".\kaique.jpeg" id="img_usu">
+            <br />
+            <br />
+            <p>
+                <h2>Contato</h2>
+            </p>
+            <div id="div">kaiquegodoys@gmail.com<br /> https://www.linkedin.com/in/kaique-de-godoy-silva-31b48118b/
+            </div>
+
+            <br />
+            <br />
+            <br />
+
+            <h1 id="font">Vinicius </h1>
+            <h2 id="font">33</h2>
+            <br />
+            <img src=".\vinicius.jpg" id="img_usu">
+            <br />
+            <br />
+            <p>
+                <h2>Contato</h2>
+            </p>
+            <div id="div">vinyviera3@gmail.com<br />
+            </div>
+
+            <br />
+            <br />
+            <br />
+
         </div>
-    -->
     </div>
 
-    <!-- The core Firebase JS SDK is always required and must be listed first -->
     <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
 
     <!-- TODO: Add SDKs for Firebase products that you want to use
@@ -161,8 +185,11 @@
         // Initialize Firebase
         firebase.initializeApp(firebaseConfig);
     </script>
-    <script src="./js/logic.js"></script>
+
+
     <script src="./js/nav.js"></script>
+    <script src="./js/validacao.js"></script>
+
 </body>
 
 </html>
